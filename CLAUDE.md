@@ -92,8 +92,9 @@ npm run typecheck    # tsc --noEmit
 
 ## Git / deploy
 
-- **Branching convention**: always create a new branch off `main` for each stage / unit of work. Exception: if the work depends on another branch that hasn't merged yet, branch off that branch instead. Never push directly to `main`.
-- Branch names: `stage-N-<short-name>` (e.g. `stage-1-scaffold`, `stage-4-character-stage`) for the staged plan; descriptive kebab-case for one-off work.
+- **Trunk**: `main`. There is no long-lived feature/dev branch — `main` is what Netlify deploys.
+- **Branching convention**: always create a new branch off `main` for each stage / unit of work, then merge back via PR. Never push directly to `main`. Exception: if the work depends on another branch that hasn't merged yet, branch off that branch instead.
+- Branch names: `stage-N-<short-name>` (e.g. `stage-1-scaffold`, `stage-4-character-stage`) for the staged plan; descriptive kebab-case (e.g. `docs/update-trunk-references`, `fix/safari-backdrop-filter`) for one-off work.
 - **Deploy target**: Netlify. Netlify subdomain for v1; custom domain comes later. SPA routing via `public/_redirects`.
 - **Substack feed**: source is `https://fcyen.substack.com/feed`. Refresh = Netlify build hook + scheduled daily ping (cron-job.org or GitHub Actions) — set up during stage 6.
 - **Analytics**: Cloudflare Web Analytics (free, privacy-friendly).
