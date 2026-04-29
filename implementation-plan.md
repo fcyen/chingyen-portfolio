@@ -49,7 +49,7 @@ Get the project skeleton running.
 - [ ] Add `netlify.toml` (build command, publish dir, Node version)
 - [ ] Set up React Router shell in `src/App.tsx` with routes: `/`, `/work/:slug`, `*` (NotFound) — placeholder components
 - [ ] Add `npm run typecheck`, `lint` scripts
-- [ ] First commit + push to `claude/build-portfolio-website-OZnK7`
+- [ ] First commit + push to the stage branch (`stage-1-scaffold`)
 
 **Done when**: `npm run dev` shows a blank "Home" page at `/` and a 404 at any other route.
 
@@ -219,4 +219,4 @@ Dedicated stacked layout for everything ≤1100px (tablet uses the same layout a
 - Read `CLAUDE.md` first.
 - Read `design-reference/README.md` and `design-reference/project/portfolio.html` in full before touching anything.
 - The prototype source is the visual spec, not a code template — reimplement, don't transcribe.
-- Don't push to `main`. Working branch is `claude/build-portfolio-website-OZnK7`.
+- Trunk is `main`. Don't push directly to it — branch off `main` per stage (`stage-N-<short-name>`) and merge via PR. See CLAUDE.md → "Git / deploy" for the full convention.
