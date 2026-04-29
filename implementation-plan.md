@@ -20,24 +20,19 @@ A staged plan for building the portfolio site from the Claude Design handoff in 
 | Routing | React Router v6 |
 | Styling | Plain CSS + CSS variables (no Tailwind) |
 | Animation | framer-motion + raw canvas/CSS |
-| Posts | MDX in repo (pending confirmation — see Open Questions) |
-| Substack | Build-time RSS fetch → bundled JSON |
-| Mobile | Dedicated stacked layout at ≤768px |
+| Posts | MDX in repo |
+| Substack | Build-time RSS fetch → bundled JSON. Feed: `https://fcyen.substack.com/feed` |
+| Mobile | Dedicated stacked layout at ≤1100px (no separate tablet layout — tablets get the mobile layout) |
 | Background | Full-bleed, three skins per persona, 24fps cap, crossfade on switch |
-| Deploy | Netlify |
+| Persona URL | Shareable: `/?p=builder|crafter|explorer`. Defaults to builder if missing/invalid |
+| Deploy | Netlify subdomain for v1; custom domain later |
+| Analytics | Cloudflare Web Analytics (free, privacy-friendly, no cookie banner) |
 | Name | "Ching Yen" |
 | Assets/links | Placeholders, user will swap in |
 
 ## Open questions
 
-Get answers before starting the noted stage.
-
-- [ ] **Posts source** (Stage 7): MDX in repo, or just a typed array of external links?
-- [ ] **Substack URL** (Stage 6): provide so the fetcher targets the real feed; until then, a placeholder URL with mocked data.
-- [ ] **Tablet (768–1100px)** (Stage 8): dedicated layout, or jump straight from desktop to mobile?
-- [ ] **Persona deep linking** (Stage 3): want `?p=crafter` shareable URLs, or always default to builder on load?
-- [ ] **Analytics** (Stage 9): Netlify Analytics, Plausible, or none?
-- [ ] **Domain** (Stage 9): custom domain or Netlify subdomain?
+All resolved. See "Decisions" table above. New questions get added here as they come up.
 
 ---
 
@@ -72,6 +67,7 @@ Build the bones of the character-select screen with empty placeholders.
 - [ ] Five empty `<section>` placeholders with debug borders so each grid area is visible
 - [ ] Wire the persona keyboard nav (`1/2/3`, `←/→`) — skip locked
 - [ ] Set up persona type + helpers in `lib/persona.ts`
+- [ ] Persona deep link: read `?p=builder|crafter|explorer` from URL on mount, validate, fall back to builder; update URL on persona change via `useSearchParams` (replace, not push, so it doesn't pollute browser history)
 
 **Done when**: layout matches the prototype's grid at 1180×720 and persona changes via keyboard log to console.
 
@@ -87,7 +83,6 @@ The pieces that don't change between personas (or change only their content).
 - [ ] `<HeroCard>` — name, persona-dependent summary, social links, version chip, barcode strip
 - [ ] `<WeaponSelector>` — three tiles, corner brackets on active, locked overlay, keyboard hints
 - [ ] Persona-dependent text content lives in a typed `lib/personaContent.ts` (don't sprinkle strings)
-- [ ] Decide on URL deep-link (`?p=crafter`) — implement if confirmed
 
 **Done when**: clicking a weapon tile or pressing 1/2/3 swaps the active state visibly; HeroCard summary text changes with persona.
 
@@ -138,7 +133,7 @@ All three persona variants of the side panels, with placeholder data.
 
 Build-time RSS → JSON → bundled.
 
-- [ ] `scripts/fetch-substack.mjs` — fetch `<substack-url>/feed`, parse with `fast-xml-parser`, extract title/link/pubDate/description, write top 3 to `src/data/substack.json`
+- [ ] `scripts/fetch-substack.mjs` — fetch `https://fcyen.substack.com/feed`, parse with `fast-xml-parser`, extract title/link/pubDate/description, write top 3 to `src/data/substack.json`
 - [ ] Hook into `package.json`: `"prebuild": "node scripts/fetch-substack.mjs"`
 - [ ] Type the JSON: `src/data/substack.d.ts`
 - [ ] Rewrite `<SubstackWidget>` as a feed (3 recent posts: title, date, link out)
@@ -154,15 +149,12 @@ Build-time RSS → JSON → bundled.
 
 Crafter post list links into real pages.
 
-- [ ] **Confirm with user**: MDX or external links?
-- [ ] If MDX:
-  - [ ] Install `@mdx-js/rollup`, configure Vite plugin
-  - [ ] `posts/<slug>.mdx` with frontmatter (title, tag, readTime, date)
-  - [ ] `src/lib/posts.ts` — load all MDX, expose typed list
-  - [ ] `routes/Work/[slug].tsx` — generic post layout (own header, no character-select chrome)
-  - [ ] Wire Crafter post list to use real `<Link to={`/work/${slug}`}>`
-  - [ ] One sample post in repo so the route is testable
-- [ ] If external links: `posts.ts` typed array → posts list opens in new tab. Skip the Work route.
+- [ ] Install `@mdx-js/rollup`, configure Vite plugin
+- [ ] `posts/<slug>.mdx` with frontmatter (title, tag, readTime, date)
+- [ ] `src/lib/posts.ts` — load all MDX via `import.meta.glob`, expose typed list
+- [ ] `routes/Work/[slug].tsx` — generic post layout (own header, no character-select chrome)
+- [ ] Wire Crafter post list to use real `<Link to={`/work/${slug}`}>`
+- [ ] One sample post in repo so the route is testable
 - [ ] Update 404 page to be on-brand
 
 **Done when**: clicking a post in the Crafter view navigates to a working post page (or external link).
@@ -171,19 +163,18 @@ Crafter post list links into real pages.
 
 ## Stage 8 — Mobile layout
 
-Dedicated stacked layout. Likely the most visual-design-heavy stage.
+Dedicated stacked layout for everything ≤1100px (tablet uses the same layout as mobile, scaled). Likely the most visual-design-heavy stage.
 
-- [ ] Drop `body { overflow: hidden }` and `min-width` below 1100px
-- [ ] Single-column flow on ≤768px:
+- [ ] Drop `body { overflow: hidden }` and the `min-width` guard at ≤1100px
+- [ ] Single-column flow:
   - [ ] HeroCard (full width, reduced padding)
   - [ ] CharacterStage (~70vh max, fixed aspect ratio)
   - [ ] WeaponSelector (sticky to bottom, three icons in a row, no keyboard hint)
   - [ ] RightCard content (timeline / posts / locked grid) below
   - [ ] Substack feed at the bottom
-- [ ] Animated bg → static persona-tinted gradient on mobile (no canvas)
+- [ ] Animated bg → static persona-tinted gradient on mobile/tablet (no canvas)
 - [ ] Annotations (`ships fast`, etc.) → drop or move below character
-- [ ] Frame border → reduce inset to 8px or remove on mobile
-- [ ] Tablet (768–1100px) — answer Open Question first; either dedicated 2-col layout or jump straight to mobile
+- [ ] Frame border → reduce inset to 8px or remove
 - [ ] Test on real device (iOS Safari + Android Chrome) — `vh` quirks, tap target sizes, sticky positioning
 - [ ] Respect safe-area insets (iPhone notch)
 
@@ -204,9 +195,8 @@ Dedicated stacked layout. Likely the most visual-design-heavy stage.
   - [ ] Lighthouse mobile score 85+ (animated bg adds cost on desktop, mobile is static)
   - [ ] Verify bundle size — no surprise large deps
 - [ ] SEO basics: `<title>`, meta description, OG image, favicon (pixel-art if possible)
-- [ ] Set up Netlify site, connect repo, configure env vars (Substack URL)
-- [ ] Configure custom domain (if user provides) + HTTPS
-- [ ] Add analytics (per Open Question answer)
+- [ ] Set up Netlify site, connect repo. Use Netlify subdomain for v1 (custom domain swap is a future task).
+- [ ] Add Cloudflare Web Analytics: free account → add the site → drop the `<script>` snippet into `index.html`. No cookie banner needed (the script doesn't set cookies / use fingerprinting).
 - [ ] Write top-level `README.md` with setup, dev, deploy notes
 - [ ] Final design diff against `design-reference/project/portfolio.html` — note any intentional deviations
 

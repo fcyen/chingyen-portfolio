@@ -92,9 +92,11 @@ npm run typecheck    # tsc --noEmit
 
 ## Git / deploy
 
-- **Working branch**: `claude/build-portfolio-website-OZnK7`. Push here, do not push to `main` without explicit permission.
-- **Deploy target**: Netlify. SPA routing via `public/_redirects`.
-- **Substack feed refresh**: Netlify build hook + scheduled ping (cron-job.org or GitHub Actions) — set up during stage 6.
+- **Branching convention**: always create a new branch off `main` for each stage / unit of work. Exception: if the work depends on another branch that hasn't merged yet, branch off that branch instead. Never push directly to `main`.
+- Branch names: `stage-N-<short-name>` (e.g. `stage-1-scaffold`, `stage-4-character-stage`) for the staged plan; descriptive kebab-case for one-off work.
+- **Deploy target**: Netlify. Netlify subdomain for v1; custom domain comes later. SPA routing via `public/_redirects`.
+- **Substack feed**: source is `https://fcyen.substack.com/feed`. Refresh = Netlify build hook + scheduled daily ping (cron-job.org or GitHub Actions) — set up during stage 6.
+- **Analytics**: Cloudflare Web Analytics (free, privacy-friendly).
 
 ## Open items
 
