@@ -1,0 +1,45 @@
+/*
+ * Design tokens — ported from design-reference/project/portfolio.html `:root`.
+ * Color values use oklch() to keep parity with the prototype.
+ * The body `data-persona` cream/peach/sage tint will be removed once the
+ * full-bleed AmbientBackground lands (Stage 4); kept here for now so early
+ * stages match the prototype.
+ */
+
+:root {
+  --bg: oklch(0.965 0.012 75);
+  --bg-tint: oklch(0.965 0.012 75);
+  --ink: oklch(0.18 0.012 60);
+  --ink-soft: oklch(0.42 0.012 60);
+  --line: oklch(0.18 0.012 60 / 0.18);
+  --panel: oklch(1 0 0 / 0.62);
+  --panel-solid: oklch(0.99 0.006 80);
+  --shadow:
+    0 30px 60px -30px oklch(0.18 0.04 60 / 0.35),
+    0 8px 18px -10px oklch(0.18 0.04 60 / 0.18);
+  --accent: oklch(0.62 0.16 42); /* terracotta */
+  --accent-2: oklch(0.55 0.1 200); /* muted teal — explorer */
+  --accent-3: oklch(0.7 0.13 90); /* mustard — crafter */
+
+  --serif: "Instrument Serif", "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --sans: "Inter", system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg-tint);
+  transition: background-color 700ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Persona tints — removed in Stage 4 once AmbientBackground takes over. */
+body[data-persona="builder"] {
+  --bg-tint: oklch(0.965 0.018 78);
+}
+body[data-persona="crafter"] {
+  --bg-tint: oklch(0.96 0.024 88);
+}
+body[data-persona="explorer"] {
+  --bg-tint: oklch(0.95 0.018 200);
+}
