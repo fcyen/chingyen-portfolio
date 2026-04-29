@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ching Yun — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(0.965 0.012 75);
+    --bg-tint: oklch(0.965 0.012 75);
+    --ink: oklch(0.18 0.012 60);
+    --ink-soft: oklch(0.42 0.012 60);
+    --line: oklch(0.18 0.012 60 / 0.18);
+    --panel: oklch(1 0 0 / 0.62);
+    --panel-solid: oklch(0.99 0.006 80);
+    --shadow: 0 30px 60px -30px oklch(0.18 0.04 60 / 0.35), 0 8px 18px -10px oklch(0.18 0.04 60 / 0.18);
+    --accent: oklch(0.62 0.16 42);  /* terracotta */
+    --accent-2: oklch(0.55 0.10 200); /* muted teal for explorer */
+    --accent-3: oklch(0.70 0.13 90);  /* mustard for crafter */
+    --serif: "Instrument Serif", "Times New Roman", serif;
+    --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    --sans: "Inter", system-ui, sans-serif;
+    transition: --bg-tint 600ms;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--bg-tint);
+    min-height: 100vh;
+    overflow: hidden;
+    transition: background-color 700ms cubic-bezier(.4,0,.2,1);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* dotted background grid like the reference sketches */
+  .stage-bg {
+    position: fixed; inset: 0; pointer-events: none;
+    background-image:
+      radial-gradient(circle at 1px 1px, oklch(0.18 0.012 60 / 0.07) 1px, transparent 0);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  }
+
+  /* page frame border like styleref */
+  .frame {
+    position: fixed; inset: 18px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .frame::before, .frame::after {
+    content: ""; position: absolute; width: 8px; height: 8px;
+    border: 1px solid var(--ink);
+  }
+  .frame::before { top: -4px; left: -4px; background: var(--bg-tint); }
+  .frame::after { bottom: -4px; right: -4px; background: var(--bg-tint); }
+
+  #app { position: relative; z-index: 2; min-height: 100vh; }
+
+  /* persona tints */
+  body[data-persona="builder"]  { --bg-tint: oklch(0.965 0.018 78); }
+  body[data-persona="crafter"]  { --bg-tint: oklch(0.96 0.024 88); }
+  body[data-persona="explorer"] { --bg-tint: oklch(0.95 0.018 200); }
+
+  /* utility */
+  .mono { font-family: var(--mono); font-feature-settings: "ss01"; letter-spacing: 0; }
+  .serif { font-family: var(--serif); font-weight: 400; }
+  .uppr { text-transform: uppercase; letter-spacing: 0.08em; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* monospace bracket label */
+  .bracket {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .bracket .b { color: var(--ink); }
+
+  /* panels */
+  .panel {
+    background: var(--panel);
+    backdrop-filter: blur(14px) saturate(1.2);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+  .panel-solid {
+    background: var(--panel-solid);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+  }
+
+  /* small ticker numbers like <100> */
+  .ticker {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .ticker b { color: var(--ink); font-weight: 500; }
+
+  /* barcode */
+  .barcode {
+    height: 28px;
+    background-image: repeating-linear-gradient(
+      90deg,
+      var(--ink) 0 1px, transparent 1px 2px,
+      var(--ink) 2px 4px, transparent 4px 6px,
+      var(--ink) 6px 7px, transparent 7px 11px,
+      var(--ink) 11px 13px, transparent 13px 14px,
+      var(--ink) 14px 17px, transparent 17px 18px
+    );
+    background-size: 18px 100%;
+    width: 110px;
+  }
+
+  /* glyph frame: small square w/ icon */
+  .glyph-frame {
+    width: 26px; height: 26px;
+    border: 1px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    background: var(--bg-tint);
+  }
+
+  /* keyboard chip */
+  .kbd {
+    font-family: var(--mono); font-size: 10px; font-weight: 500;
+    border: 1px solid var(--ink);
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: var(--bg-tint);
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  /* link arrow */
+  .arrow-link {
+    font-family: var(--mono); font-size: 11px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--ink); text-decoration: none;
+    border-bottom: 1px solid var(--ink); padding-bottom: 2px;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: gap 200ms;
+  }
+  .arrow-link:hover { gap: 10px; }
+
+  /* focus rings */
+  button { font: inherit; color: inherit; }
+  button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* scrollbar inside panels */
+  .scroll {
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--line) transparent;
+  }
+  .scroll::-webkit-scrollbar { width: 6px; }
+  .scroll::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+  /* pixel art shadow under character */
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .floaty { animation: float 4s ease-in-out infinite; }
+
+  /* fade switch */
+  .fade-enter { opacity: 0; transform: translateY(8px); }
+  .fade-enter-active { opacity: 1; transform: translateY(0); transition: all 380ms cubic-bezier(.4,0,.2,1); }
+
+  /* subtle scanline overlay on character zone */
+  .scanlines {
+    position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent 0 3px, oklch(0.18 0.012 60 / 0.02) 3px 4px);
+    mix-blend-mode: multiply;
+  }
+
+  /* responsive guard - keep layout but allow smaller */
+  @media (max-width: 1100px) {
+    body { overflow: auto; }
+  }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body data-persona="builder">
+  <div class="stage-bg"></div>
+  <div class="frame"></div>
+  <div id="app"></div>
+
+  <script type="text/babel" src="src/icons.jsx"></script>
+  <script type="text/babel" src="src/character.jsx"></script>
+  <script type="text/babel" src="src/panels.jsx"></script>
+  <script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>
