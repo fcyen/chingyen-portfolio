@@ -1,0 +1,99 @@
+/*
+ * HeroCard — top-left intro panel. Persistent across personas; only the
+ * one-line summary changes. Mirrors the prototype's HeroCard.
+ */
+
+.root {
+  width: 360px;
+  padding: 22px 24px 20px;
+  position: relative;
+}
+
+.eyebrow {
+  margin-bottom: 14px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.title {
+  margin: 0;
+  font-size: 50px;
+  line-height: 1.05;
+  font-weight: 400;
+}
+
+.title em {
+  font-style: italic;
+}
+
+.summary {
+  margin: 20px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--ink);
+  text-wrap: pretty;
+  max-width: 36ch;
+}
+
+.socials {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.socialLink {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  background: var(--bg-tint);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 200ms, color 200ms;
+}
+
+.socialLink:hover,
+.socialLink:focus-visible {
+  background: var(--ink);
+  color: var(--bg-tint);
+}
+
+.socialMeta {
+  font-size: 10px;
+  color: var(--ink-soft);
+  margin-left: 6px;
+}
+
+.meta {
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metaRow + .metaRow {
+  margin-top: 8px;
+}
+
+.version {
+  font-size: 10px;
+  color: var(--ink);
+}
+.versionDim {
+  color: var(--ink-soft);
+}
+
+.statusOnline,
+.based {
+  font-size: 10px;
+}

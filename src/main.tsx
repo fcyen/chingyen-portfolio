@@ -11,6 +11,7 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/600.css";
 import "@/styles/reset.css";
 import "@/styles/tokens.css";
+import "@/styles/utilities.css";
 import App from "@/App";
 
 const root = document.getElementById("root");

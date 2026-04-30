@@ -1,0 +1,28 @@
+/*
+ * Persona-dependent text content for the Home (character-select) screen.
+ * Centralised so copy changes don't sprawl across components.
+ *
+ * Strings are placeholders mirroring the prototype; the user will swap real
+ * copy in later. URLs in HeroCard's social row are placeholders too.
+ */
+import type { Persona } from "@/lib/persona";
+
+export type PersonaContent = {
+  /** One-sentence summary used by HeroCard. */
+  heroSummary: string;
+};
+
+export const PERSONA_CONTENT: Record<Persona, PersonaContent> = {
+  builder: {
+    heroSummary:
+      "engineer building scalable frontends and bridging tech with business goals.",
+  },
+  crafter: {
+    heroSummary:
+      "designer who designs with restraints and crafts with intention.",
+  },
+  explorer: {
+    heroSummary:
+      "photographer who chases the golden hour in unfamiliar lands.",
+  },
+};
