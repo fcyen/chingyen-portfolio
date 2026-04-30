@@ -83,7 +83,7 @@ function Tile({
       }}
       aria-pressed={active}
       aria-disabled={locked}
-      title={locked ? "locked — coming soon" : def.label}
+      title={locked ? "level locked - stay tuned!" : def.label}
       className={classes}
     >
       {active && (

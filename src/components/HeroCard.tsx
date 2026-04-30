@@ -8,8 +8,7 @@ import styles from "./HeroCard.module.css";
  * HeroCard — name, persona-dependent summary, social links, and a small
  * meta strip with version + location. Persistent across personas; only the
  * `summary` paragraph swaps with the active persona.
- *
- * All href values are placeholders — the user will provide real URLs.
+ *  
  */
 
 type SocialDef = {
@@ -19,9 +18,9 @@ type SocialDef = {
 };
 
 const SOCIALS: readonly SocialDef[] = [
-  { label: "linkedin", href: "#", Icon: LinkedInIcon },
-  { label: "github", href: "#", Icon: GithubIcon },
-  { label: "email", href: "#", Icon: MailIcon },
+  { label: "linkedin", href: "https://www.linkedin.com/in/foo-ching-yen/", Icon: LinkedInIcon },
+  { label: "github", href: "https://github.com/fcyen/", Icon: GithubIcon },
+  { label: "email", href: "mailto:chingyenfoo@gmail.com", Icon: MailIcon },
 ];
 
 export default function HeroCard({ persona }: { persona: Persona }) {
@@ -42,15 +41,14 @@ export default function HeroCard({ persona }: { persona: Persona }) {
           <a
             key={label}
             href={href}
+            target="_blank" 
+            rel="noopener noreferrer"
             aria-label={label}
             className={styles.socialLink}
           >
             <Icon />
           </a>
         ))}
-        <span className={`mono ${styles.socialMeta}`}>
-          {"<"}03{">"} channels
-        </span>
       </div>
 
       <div className={styles.meta}>
@@ -59,19 +57,11 @@ export default function HeroCard({ persona }: { persona: Persona }) {
             <b>chingyen</b>
             <span className={styles.versionDim}>.portfolio</span>{" "}
             <span className={styles.versionDim}>///</span>{" "}
-            <span className={styles.versionDim}>v0.4.2</span>
+            <span className={styles.versionDim}>v0.0.1</span>
           </span>
-          <span className={`ticker ${styles.statusOnline}`}>
-            [ <b>online</b> ]
-          </span>
-        </div>
-        <div className={styles.metaRow}>
           <span className={`ticker ${styles.based}`}>
-            based: <b>SF · NYC</b>
+            based: <b>Singapore</b>
           </span>
-          <a href="#" className="arrow-link" style={{ fontSize: 10 }}>
-            work with me <ArrowSE />
-          </a>
         </div>
       </div>
     </div>

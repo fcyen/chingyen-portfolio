@@ -15,14 +15,14 @@ export type PersonaContent = {
 export const PERSONA_CONTENT: Record<Persona, PersonaContent> = {
   builder: {
     heroSummary:
-      "engineer building AI tools that are useful, calm, and a little weird.",
+      "engineer building AI tools that tackles true business complexity.",
   },
   crafter: {
     heroSummary:
-      "designer who likes systems, sticky notes, and the slow craft of getting it right.",
+      "designer who designs with restraints and crafts with intention.",
   },
   explorer: {
     heroSummary:
-      "photographer with a soft spot for golden hour and unfamiliar streets.",
+      "photographer who chases the golden hour in unfamiliar lands.",
   },
 };
