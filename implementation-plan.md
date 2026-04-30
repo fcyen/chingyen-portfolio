@@ -55,7 +55,7 @@ Get the project skeleton running.
 
 ---
 
-## Stage 2 — Desktop layout shell
+## Stage 2 — Desktop layout shell [DONE]
 
 Build the bones of the character-select screen with empty placeholders.
 
@@ -73,7 +73,7 @@ Build the bones of the character-select screen with empty placeholders.
 
 ---
 
-## Stage 3 — Persistent components (HeroCard, WeaponSelector)
+## Stage 3 — Persistent components (HeroCard, WeaponSelector) [DONE]
 
 The pieces that don't change between personas (or change only their content).
 
