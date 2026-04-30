@@ -1,0 +1,20 @@
+/*
+ * Dotted radial-grid background that sits behind everything on the Home stage.
+ * A 24px grid of 1px ink dots, masked to fade out toward the edges so the
+ * frame border doesn't compete with it. Pointer-events disabled so it never
+ * intercepts clicks. z-index 0; the frame sits at z-index 1, app at 2.
+ *
+ * Stage 4 will replace/augment this with the full-bleed AmbientBackground.
+ */
+
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, oklch(0.18 0.012 60 / 0.07) 1px, transparent 0);
+  background-size: 24px 24px;
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 75%);
+}
