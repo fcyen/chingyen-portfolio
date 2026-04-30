@@ -5,7 +5,6 @@ import DottedStageBg from "@/components/DottedStageBg";
 import HeroCard from "@/components/HeroCard";
 import WeaponSelector from "@/components/WeaponSelector";
 import {
-  DEFAULT_PERSONA,
   parsePersonaParam,
   personaFromNumberKey,
   stepPersona,
@@ -26,17 +25,27 @@ export default function Home() {
   const persona: Persona = parsePersonaParam(searchParams.get("p"));
 
   // Set persona via the URL — keeps the page shareable. `replace: true` so
-  // persona switches don't pollute browser history.
+  // persona switches don't pollute browser history. We always write the
+  // active persona to `?p=` (including the default) so the URL is an honest
+  // reflection of state.
   const setPersona = (next: Persona) => {
-    if (next === persona) return;
+    if (next === persona && searchParams.get("p") === next) return;
     const params = new URLSearchParams(searchParams);
-    if (next === DEFAULT_PERSONA) {
-      params.delete("p");
-    } else {
-      params.set("p", next);
-    }
+    params.set("p", next);
     setSearchParams(params, { replace: true });
   };
+
+  // Seed `?p=` on first load when it's missing or invalid, so the URL
+  // always reflects the active persona (including the default builder).
+  useEffect(() => {
+    if (searchParams.get("p") !== persona) {
+      const params = new URLSearchParams(searchParams);
+      params.set("p", persona);
+      setSearchParams(params, { replace: true });
+    }
+    // Run once on mount; subsequent updates flow through setPersona.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Body-level styles only on Home: lock scroll, expose persona for any
   // body-scoped CSS, and clean up on unmount so other routes scroll normally.

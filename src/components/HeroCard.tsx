@@ -1,5 +1,6 @@
 import type { ReactElement } from "react";
-import { ArrowSE, GithubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
+import { AnimatePresence, motion } from "framer-motion";
+import { GithubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 import type { Persona } from "@/lib/persona";
 import { PERSONA_CONTENT } from "@/lib/personaContent";
 import styles from "./HeroCard.module.css";
@@ -34,7 +35,20 @@ export default function HeroCard({ persona }: { persona: Persona }) {
         Hi, I&apos;m <em>Ching&nbsp;Yen</em>.
       </h1>
 
-      <p className={styles.summary}>{summary}</p>
+      {/* Crossfade summary on persona change. `mode="wait"` lets the old line
+          finish exiting before the new one fades in so the layout doesn't jump. */}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.p
+          key={persona}
+          className={styles.summary}
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -4 }}
+          transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
+        >
+          {summary}
+        </motion.p>
+      </AnimatePresence>
 
       <div className={styles.socials}>
         {SOCIALS.map(({ label, href, Icon }) => (
