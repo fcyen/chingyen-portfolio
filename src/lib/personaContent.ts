@@ -26,3 +26,21 @@ export const PERSONA_CONTENT: Record<Persona, PersonaContent> = {
       "photographer who chases the golden hour in unfamiliar lands.",
   },
 };
+
+/** Two corner labels rendered around the CharacterStage per persona. */
+export type Annotation = { code: string; text: string };
+
+export const PERSONA_ANNOTATIONS: Record<Persona, readonly [Annotation, Annotation]> = {
+  builder: [
+    { code: "<01>", text: "ships fast" },
+    { code: "<02>", text: "writes evals" },
+  ],
+  crafter: [
+    { code: "<01>", text: "sweats details" },
+    { code: "<02>", text: "sticky-note brain" },
+  ],
+  explorer: [
+    { code: "<01>", text: "chases light" },
+    { code: "<02>", text: "f/2 enthusiast" },
+  ],
+};
