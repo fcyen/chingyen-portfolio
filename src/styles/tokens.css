@@ -1,9 +1,13 @@
 /*
  * Design tokens — ported from design-reference/project/portfolio.html `:root`.
  * Color values use oklch() to keep parity with the prototype.
- * The body `data-persona` cream/peach/sage tint will be removed once the
- * full-bleed AmbientBackground lands (Stage 4); kept here for now so early
- * stages match the prototype.
+ *
+ * Stage 4: the body cream/peach/sage `data-persona` tints are gone — the
+ * full-bleed AmbientBackground owns the bg now. What `data-persona` drives
+ * here instead is the *ink palette*: on the dark Builder/Explorer skins we
+ * flip --ink, --ink-soft, --line, --bg-tint to light values so text and
+ * borders sitting directly on the ambient bg stay legible. Panels can opt
+ * into a darker scrim via --panel, which is also persona-aware.
  */
 
 :root {
@@ -12,7 +16,7 @@
   --ink: oklch(0.18 0.012 60);
   --ink-soft: oklch(0.42 0.012 60);
   --line: oklch(0.18 0.012 60 / 0.18);
-  --panel: oklch(1 0 0 / 0.62);
+  --panel: oklch(1 0 0 / 0.78);
   --panel-solid: oklch(0.99 0.006 80);
   --shadow:
     0 30px 60px -30px oklch(0.18 0.04 60 / 0.35),
@@ -29,17 +33,30 @@
 body {
   font-family: var(--sans);
   color: var(--ink);
-  background: var(--bg-tint);
-  transition: background-color 700ms cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg);
+  transition: color 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Persona tints — removed in Stage 4 once AmbientBackground takes over. */
+/*
+ * Builder + Explorer ride dark ambient skins → flip ink/line/bg-tint so any
+ * element that uses these tokens (HeroCard text, WeaponSelector tiles, the
+ * lock badge that swaps fg/bg on hover, etc.) stays readable. Crafter sits
+ * on warm paper and keeps the default dark ink palette.
+ */
 body[data-persona="builder"] {
-  --bg-tint: oklch(0.965 0.018 78);
+  --ink: oklch(0.96 0.01 220);
+  --ink-soft: oklch(0.78 0.02 220);
+  --line: oklch(0.96 0.01 220 / 0.22);
+  --bg-tint: oklch(0.18 0.04 250);
+  --panel: oklch(0.18 0.04 250 / 0.6);
+  --panel-solid: oklch(0.16 0.04 250);
 }
-body[data-persona="crafter"] {
-  --bg-tint: oklch(0.96 0.024 88);
-}
+
 body[data-persona="explorer"] {
-  --bg-tint: oklch(0.95 0.018 200);
+  --ink: oklch(0.96 0.01 220);
+  --ink-soft: oklch(0.78 0.02 220);
+  --line: oklch(0.96 0.01 220 / 0.22);
+  --bg-tint: oklch(0.18 0.05 240);
+  --panel: oklch(0.18 0.05 240 / 0.6);
+  --panel-solid: oklch(0.16 0.05 240);
 }

@@ -88,7 +88,7 @@ The pieces that don't change between personas (or change only their content).
 
 ---
 
-## Stage 4 — Character stage + ambient background
+## Stage 4 — Character stage + ambient background [DONE]
 
 The centerpiece. This is the visually heaviest stage.
 

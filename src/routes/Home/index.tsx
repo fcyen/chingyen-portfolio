@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Frame from "@/components/Frame";
-import DottedStageBg from "@/components/DottedStageBg";
+import AmbientBackground from "@/components/AmbientBackground";
+import CharacterStage from "@/components/CharacterStage";
 import HeroCard from "@/components/HeroCard";
 import WeaponSelector from "@/components/WeaponSelector";
 import {
@@ -95,7 +96,7 @@ export default function Home() {
 
   return (
     <>
-      <DottedStageBg />
+      <AmbientBackground persona={persona} />
       <Frame />
       <main className={styles.stage}>
         <section className={styles.hero}>
@@ -103,9 +104,7 @@ export default function Home() {
         </section>
 
         <section className={styles.center}>
-          <div className={styles.placeholder} data-label="stage">
-            CharacterStage
-          </div>
+          <CharacterStage persona={persona} />
         </section>
 
         <section className={styles.selector}>
