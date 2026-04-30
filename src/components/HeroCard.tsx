@@ -29,7 +29,7 @@ export default function HeroCard({ persona }: { persona: Persona }) {
 
   return (
     <div className={styles.root}>
-      <div className={`mono uppr ${styles.eyebrow}`}>// hello there ____</div>
+      <div className={`mono uppr ${styles.eyebrow}`}>// hello there ---</div>
 
       <h1 className={`serif ${styles.title}`}>
         Hi, I&apos;m <em>Ching&nbsp;Yen</em>.
