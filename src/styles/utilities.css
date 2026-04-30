@@ -1,0 +1,99 @@
+/*
+ * Global utility classes ported from design-reference/project/portfolio.html.
+ * Component layout lives in CSS Modules; these are the cross-cutting
+ * typography / chrome helpers used throughout the prototype.
+ */
+
+.mono {
+  font-family: var(--mono);
+  font-feature-settings: "ss01";
+  letter-spacing: 0;
+}
+.serif {
+  font-family: var(--serif);
+  font-weight: 400;
+}
+.uppr {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.panel {
+  background: var(--panel);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+.panel-solid {
+  background: var(--panel-solid);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  box-shadow: var(--shadow);
+}
+
+.ticker {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+.ticker b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.kbd {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  border: 1px solid var(--ink);
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--bg-tint);
+  color: var(--ink);
+  line-height: 1;
+}
+
+.arrow-link {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 200ms;
+}
+.arrow-link:hover {
+  gap: 10px;
+}
+
+.scroll {
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+.scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.scroll::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 3px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

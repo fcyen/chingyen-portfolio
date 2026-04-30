@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Frame from "@/components/Frame";
 import DottedStageBg from "@/components/DottedStageBg";
+import HeroCard from "@/components/HeroCard";
+import WeaponSelector from "@/components/WeaponSelector";
 import {
   DEFAULT_PERSONA,
   parsePersonaParam,
@@ -69,17 +71,10 @@ export default function Home() {
 
       if (e.key === "1" || e.key === "2" || e.key === "3") {
         const next = personaFromNumberKey(e.key);
-        if (next) {
-          // eslint-disable-next-line no-console
-          console.log("[persona]", next);
-          setPersona(next);
-        }
+        if (next) setPersona(next);
       } else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
         const dir = e.key === "ArrowRight" ? 1 : -1;
-        const next = stepPersona(persona, dir);
-        // eslint-disable-next-line no-console
-        console.log("[persona]", next);
-        setPersona(next);
+        setPersona(stepPersona(persona, dir));
       }
     };
     window.addEventListener("keydown", onKey);
@@ -95,9 +90,7 @@ export default function Home() {
       <Frame />
       <main className={styles.stage}>
         <section className={styles.hero}>
-          <div className={styles.placeholder} data-label="hero">
-            HeroCard
-          </div>
+          <HeroCard persona={persona} />
         </section>
 
         <section className={styles.center}>
@@ -107,9 +100,7 @@ export default function Home() {
         </section>
 
         <section className={styles.selector}>
-          <div className={styles.placeholder} data-label="selector">
-            WeaponSelector
-          </div>
+          <WeaponSelector persona={persona} onPersonaChange={setPersona} />
         </section>
 
         <section className={styles.left}>
