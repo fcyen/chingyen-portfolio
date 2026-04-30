@@ -1,9 +1,13 @@
 import { useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import Frame from "@/components/Frame";
 import AmbientBackground from "@/components/AmbientBackground";
 import CharacterStage from "@/components/CharacterStage";
 import HeroCard from "@/components/HeroCard";
+import PersonaTagCard from "@/components/PersonaTagCard";
+import RightCard from "@/components/RightCard";
+import SubstackWidget from "@/components/SubstackWidget";
 import WeaponSelector from "@/components/WeaponSelector";
 import {
   parsePersonaParam,
@@ -14,12 +18,13 @@ import {
 import styles from "./Home.module.css";
 
 /**
- * Home — character-select stage.
+ * Home — character-select stage. Owns the layout shell, persona state +
+ * deep-link via `?p=...`, keyboard nav (1/2/3 + ←/→ skipping locked),
+ * body-level scroll lock, and the AmbientBackground / Frame chrome.
  *
- * Stage 2 scope: layout bones, persona state, deep-link via `?p=...`,
- * keyboard nav (1/2/3 + ←/→), Frame + DottedStageBg, debug-bordered
- * placeholders for the five grid cells. Real cell content lands in
- * stages 3–5.
+ * Cell components: HeroCard (top-left), CharacterStage (centre),
+ * WeaponSelector (bottom-centre), Substack/PersonaTagCard (bottom-left),
+ * RightCard (right column).
  */
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -112,15 +117,31 @@ export default function Home() {
         </section>
 
         <section className={styles.left}>
-          <div className={styles.placeholder} data-label="left">
-            Substack / PersonaTagCard
-          </div>
+          {/*
+            Crossfade the bottom-left widget on persona switch. Builder shows
+            SubstackWidget; the other personas show PersonaTagCard. We key by
+            the rendered slot ("substack" vs "tag-<persona>") rather than by
+            persona alone so swapping crafter↔explorer also gets a transition.
+          */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={persona === "builder" ? "substack" : `tag-${persona}`}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+            >
+              {persona === "builder" ? (
+                <SubstackWidget />
+              ) : (
+                <PersonaTagCard persona={persona} />
+              )}
+            </motion.div>
+          </AnimatePresence>
         </section>
 
         <section className={styles.right}>
-          <div className={styles.placeholder} data-label="right">
-            RightCard
-          </div>
+          <RightCard persona={persona} />
         </section>
       </main>
     </>
