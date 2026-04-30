@@ -36,7 +36,7 @@ All resolved. See "Decisions" table above. New questions get added here as they 
 
 ---
 
-## Stage 1 — Scaffold
+## Stage 1 — Scaffold [DONE]
 
 Get the project skeleton running.
 
