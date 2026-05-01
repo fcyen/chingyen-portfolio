@@ -90,13 +90,13 @@ function BuilderMatrixCanvas({ active }: { active: boolean }) {
       const nextCols = Math.ceil(w / CELL);
       while (drops.length < nextCols) {
         drops.push(Math.random() * -50);
-        speeds.push(0.25 + Math.random() * 0.5);
+        speeds.push(0.07 + Math.random() * 0.15);
       }
       cols = nextCols;
     };
 
     const drawFrame = () => {
-      ctx.fillStyle = "rgba(8, 14, 28, 0.18)";
+      ctx.fillStyle = "rgba(8, 14, 28, 0.22)";
       ctx.fillRect(0, 0, w, h);
 
       ctx.font = "14px JetBrains Mono, ui-monospace, monospace";
@@ -108,13 +108,13 @@ function BuilderMatrixCanvas({ active }: { active: boolean }) {
         const ch = CHARS[(Math.random() * CHARS.length) | 0];
 
         if (i % ACCENT_EVERY === 0 && Math.random() < 0.02) {
-          ctx.fillStyle = "rgba(255, 90, 90, 0.85)";
+          ctx.fillStyle = "rgba(255, 90, 90, 0.28)";
         } else {
-          ctx.fillStyle = "rgba(140, 200, 255, 0.85)";
+          ctx.fillStyle = "rgba(140, 200, 255, 0.28)";
         }
         ctx.fillText(ch, x, y);
 
-        ctx.fillStyle = "rgba(80, 130, 200, 0.32)";
+        ctx.fillStyle = "rgba(80, 130, 200, 0.09)";
         ctx.fillText(ch, x, y - CELL);
 
         drops[i] += speeds[i];
