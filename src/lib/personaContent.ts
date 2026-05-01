@@ -51,39 +51,32 @@ export type TimelineEntry = {
   year: string;
   role: string;
   org: string;
-  blurb: string;
+  blurb: string[];
 };
 
 /** Builder right-card timeline. Placeholder copy mirroring the prototype. */
 export const BUILDER_TIMELINE: readonly TimelineEntry[] = [
   {
-    year: "2024 — now",
-    role: "AI Engineer",
-    org: "Stealth · agents",
-    blurb:
-      "Building developer tools for autonomous coding agents. Eval pipelines, harnesses, traces.",
-  },
-  {
-    year: "2022 — 2024",
-    role: "Senior SWE",
-    org: "Mid-stage startup",
-    blurb:
-      "Led the inference platform. Cut p99 latency 3.4×. Shipped a small LLM gateway used by ~40 services.",
-  },
-  {
-    year: "2020 — 2022",
+    year: "2025 — 2026",
     role: "Software Engineer",
-    org: "Early-stage startup",
-    blurb:
-      "Full-stack. Built the first version of the customer-facing product end to end.",
+    org: "GoodNotes",
+    blurb: [
+      "• Led the cross-platform integration of Braze within a complex TWA architecture, unlocking a net-new communication channel to reach cross-platform users for the first time — enabling targeted push notifications and marketing campaigns where no outreach capability previously existed.",
+       "• Architected the end-to-end CRM data pipeline, designing event instrumentation and user attribute mapping to power advanced user segmentation — laying the foundation for the team's first data-driven lifecycle marketing efforts.",
+       "• Engineered the cross-platform beta recruitment UI and implemented a feature-flagged rollout strategy within a condensed timeframe, surpassing recruitment targets by 300%."
+    ]
   },
   {
-    year: "2018 — 2020",
-    role: "Engineer (intern→FT)",
-    org: "Big tech",
-    blurb:
-      "Distributed systems team. Wrote a lot of Go. Learned what a postmortem feels like at 3am.",
-  },
+    year: "2021 — 2025",
+    role: "Senior Software Engineer",
+    org: "Zendesk",
+    blurb:[
+      "• Built the Auto-Accept feature for the messaging product, reducing agents' first response time by streamlining ticket assignment. Drove adoption from 5% to 25% across targeted enterprise accounts through data-driven iteration on the user experience.",
+      "• Co-led an internal project to build a diagnostic data pipeline, consolidating investigation data into a single location and shortening internal incident investigation time from days to hours.",
+      "• Migrated high-traffic WebSocket endpoints to GraphQL, eliminating sticky sessions and tripling concurrent connection capacity to improve scalability of real-time messaging.",
+      "• Built robust test suites for Tier 1 features and implemented monitoring and observability instrumentation on Datadog."
+    ]
+  }
 ];
 
 export type PostEntry = {

@@ -77,7 +77,11 @@ function BuilderBody() {
             <div className={`mono ${styles.timelineYear}`}>{t.year}</div>
             <div className={styles.timelineRole}>{t.role}</div>
             <div className={`mono ${styles.timelineOrg}`}>@ {t.org}</div>
-            <p className={styles.timelineBlurb}>{t.blurb}</p>
+            {t.blurb && t.blurb.map((line, i) => (
+              <p key={i} className={styles.timelineBlurb}>
+                {line}
+              </p>
+            ))}
           </div>
         ))}
       </div>
