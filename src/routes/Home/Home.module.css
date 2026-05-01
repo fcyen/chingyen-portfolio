@@ -15,21 +15,18 @@
 
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
-  grid-template-rows: minmax(0, 1fr) auto;
-  /*
-   * First column ("stage") spans both rows. .center is a flex column:
-   * .characterWrap fills available height, WeaponSelector sits below it.
-   */
-  grid-template-areas:
-    "stage  hero  right"
-    "stage  left  right";
+  grid-template-rows: 1fr;
+  grid-template-areas: "stage  col2  right";
   column-gap: 22px;
-  row-gap: 14px;
 }
 
-.hero {
-  grid-area: hero;
-  align-self: start;
+.col2 {
+  grid-area: col2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
 }
 
 .center {
@@ -56,11 +53,6 @@
 
 .selector > * {
   pointer-events: auto;
-}
-
-.left {
-  grid-area: left;
-  align-self: end;
 }
 
 .right {

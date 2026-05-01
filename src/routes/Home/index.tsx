@@ -104,10 +104,6 @@ export default function Home() {
       <AmbientBackground persona={persona} />
       <Frame />
       <main className={styles.stage}>
-        <section className={styles.hero}>
-          <HeroCard persona={persona} />
-        </section>
-
         <section className={styles.center}>
           <div className={styles.characterWrap}>
             <CharacterStage persona={persona} />
@@ -117,9 +113,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.left}>
+        <section className={styles.col2}>
+          <HeroCard persona={persona} />
           {/*
-            Crossfade the bottom-left widget on persona switch. Builder shows
+            Crossfade the bottom widget on persona switch. Builder shows
             SubstackWidget; the other personas show PersonaTagCard. We key by
             the rendered slot ("substack" vs "tag-<persona>") rather than by
             persona alone so swapping crafter↔explorer also gets a transition.
