@@ -109,11 +109,12 @@ export default function Home() {
         </section>
 
         <section className={styles.center}>
-          <CharacterStage persona={persona} />
-        </section>
-
-        <section className={styles.selector}>
-          <WeaponSelector persona={persona} onPersonaChange={setPersona} />
+          <div className={styles.characterWrap}>
+            <CharacterStage persona={persona} />
+          </div>
+          <div className={styles.selector}>
+            <WeaponSelector persona={persona} onPersonaChange={setPersona} />
+          </div>
         </section>
 
         <section className={styles.left}>
