@@ -14,7 +14,7 @@
   padding: 26px 36px 28px;
 
   display: grid;
-  grid-template-columns: minmax(380px, 1fr) minmax(340px, 380px) minmax(340px, 360px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
   grid-template-rows: minmax(0, 1fr) auto;
   /*
    * First column ("stage") spans both rows. .center is a flex column:
