@@ -22,6 +22,15 @@ const CHARACTER_ALT: Record<Persona, string> = {
   explorer: "The Explorer — pixel art",
 };
 
+// Per-persona vertical nudge on the img so each character's visual baseline
+// sits at roughly the same position. Builder's PNG has more headroom at the
+// top, so we push it down to match the others.
+const CHARACTER_OFFSET_Y: Record<Persona, string> = {
+  builder: "8%",
+  crafter: "0%",
+  explorer: "0%",
+};
+
 export default function CharacterStage({ persona }: { persona: Persona }) {
   const isBuilder = persona === "builder";
 
@@ -42,11 +51,13 @@ export default function CharacterStage({ persona }: { persona: Persona }) {
           exit={{ opacity: 0, y: 8 }}
           transition={{ duration: 0.38, ease: [0.4, 0, 0.2, 1] }}
         >
-          <img
-            className={styles.floaty}
-            src={CHARACTER_SRC[persona]}
-            alt={CHARACTER_ALT[persona]}
-          />
+          <div style={{ transform: `translateY(${CHARACTER_OFFSET_Y[persona]})` }}>
+            <img
+              className={styles.floaty}
+              src={CHARACTER_SRC[persona]}
+              alt={CHARACTER_ALT[persona]}
+            />
+          </div>
         </motion.div>
       </AnimatePresence>
 
