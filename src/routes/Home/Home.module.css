@@ -14,50 +14,45 @@
   padding: 26px 36px 28px;
 
   display: grid;
-  grid-template-columns: minmax(340px, 380px) minmax(380px, 1fr) minmax(340px, 360px);
-  grid-template-rows: minmax(0, 1fr) auto;
-  /*
-   * Middle column ("stage") spans both rows so the character art has the full
-   * column height to centre in. The WeaponSelector is no longer in the grid —
-   * it's absolutely positioned at the bottom-centre of .stage, overlaying the
-   * lower part of the character area. Selector tiles are mostly transparent,
-   * so the avatar still reads through behind them.
-   */
-  grid-template-areas:
-    "hero  stage  right"
-    "left  stage  right";
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "stage  col2  right";
   column-gap: 22px;
-  row-gap: 14px;
 }
 
-.hero {
-  grid-area: hero;
-  align-self: start;
+.col2 {
+  grid-area: col2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
 }
 
 .center {
   grid-area: stage;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 0;
   min-width: 0;
 }
 
+.characterWrap {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
 .selector {
-  position: absolute;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
+  flex-shrink: 0;
+  padding-bottom: 12px;
   z-index: 5;
   pointer-events: none;
 }
 
 .selector > * {
   pointer-events: auto;
-}
-
-.left {
-  grid-area: left;
-  align-self: end;
 }
 
 .right {

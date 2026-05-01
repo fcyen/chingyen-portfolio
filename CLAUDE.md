@@ -30,12 +30,12 @@ src/
   components/              # shared primitives + Home cells
     AmbientBackground.*    # full-bleed bg, one skin per persona, 24fps cap
     Frame.*                # inset 1px frame border with corner squares
-    HeroCard.*             # top-left intro panel
-    CharacterStage.*       # centre cell, character art + annotations
-    WeaponSelector.*       # three persona tiles + keyboard hints
-    RightCard.*            # right panel, persona-dependent body
-    SubstackWidget.*       # bottom-left for builder (mocked feed in Stage 5)
-    PersonaTagCard.*       # bottom-left for crafter/explorer (stat block + quote)
+    HeroCard.*             # top-centre intro panel
+    CharacterStage.*       # left column, character art + annotations
+    WeaponSelector.*       # three persona tiles + keyboard hints; flex child below CharacterStage
+    RightCard.*            # right panel (½ the page width), persona-dependent body
+    SubstackWidget.*       # bottom-centre for builder (mocked feed in Stage 5)
+    PersonaTagCard.*       # bottom-centre for crafter/explorer (stat block + quote)
     PixelGrid.tsx, icons.tsx  # pixel-art primitive + UI glyphs
   styles/
     tokens.css             # design tokens — colors, fonts, shadows
@@ -89,6 +89,7 @@ The chat transcript at `design-reference/chats/chat1.md` shows the user/designer
 - **Locked persona (Explorer)** must be skipped by keyboard nav (`3` and `←/→`) and rejected by clicks. Don't regress this.
 - **All asset URLs and external links are placeholders** — the user will swap them in. Don't invent real URLs.
 - **Name is "Ching Yen"** (the prototype HTML uses this; the chat transcript said "Ching Yun" — the HTML wins).
+- **Column order differs from the prototype** (intentional). The original design put the intro card on the left, character stage in the centre, and work experience on the right. The live layout reverses columns 1 and 2: character stage left, intro/substack centre, work experience right. Column proportions are `1fr 1fr 2fr` (roughly ¼ / ¼ / ½) so the right panel dominates — the goal is to direct visitor attention toward the work experience content. Do not revert to the prototype's column order without asking.
 
 ## Conventions
 

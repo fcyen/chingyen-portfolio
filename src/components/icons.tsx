@@ -98,17 +98,17 @@ export const MailIcon = () => (
   </svg>
 );
 
-export const PixelHeart = ({ scale = 3 }: WeaponIconProps) => (
+export const PixelLightning = ({ scale = 3 }: WeaponIconProps) => (
   <PixelGrid
     scale={scale}
     color="var(--accent)"
     rows={[
-      ".##.##.",
-      "#######",
-      "#######",
-      ".#####.",
-      "..###..",
-      "...#...",
+      "  #   ",
+      " #   ",
+      "##### ",
+      "   #  ",
+      "  #   ",
+      " #   ",
     ]}
   />
 );

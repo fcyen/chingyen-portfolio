@@ -6,7 +6,7 @@
 
 .root {
   width: 320px;
-  background: oklch(0.16 0.012 60);
+  background: var(--bg-tint);
   color: oklch(0.95 0.01 80);
   padding: 16px 18px;
   box-shadow: var(--shadow);
@@ -36,6 +36,7 @@
   line-height: 1.1;
   font-style: italic;
   margin: 0;
+  letter-spacing: 0.04em;
 }
 
 .blurb {

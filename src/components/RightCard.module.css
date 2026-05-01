@@ -100,6 +100,17 @@
   color: var(--ink-soft);
 }
 
+/* ---- Builder persona: lighter panel + white glow ---- */
+
+:global(body[data-persona="builder"]) .root {
+  background: oklch(43.047% 0.04502 250.098);
+  border-color: oklch(0.18 0.012 60 / 0.18);
+  box-shadow:
+    0 0 48px 12px oklch(1 0 0 / 0.2),
+    0 24px 48px -16px oklch(0 0 0 / 0.35);
+  --bg-tint: oklch(0.5441 0.04 250);
+}
+
 /* ---- Builder body: timeline ---- */
 
 .bodyEyebrow {
