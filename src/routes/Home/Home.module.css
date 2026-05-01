@@ -14,18 +14,18 @@
   padding: 26px 36px 28px;
 
   display: grid;
-  grid-template-columns: minmax(340px, 380px) minmax(380px, 1fr) minmax(340px, 360px);
+  grid-template-columns: minmax(380px, 1fr) minmax(340px, 380px) minmax(340px, 360px);
   grid-template-rows: minmax(0, 1fr) auto;
   /*
-   * Middle column ("stage") spans both rows so the character art has the full
+   * First column ("stage") spans both rows so the character art has the full
    * column height to centre in. The WeaponSelector is no longer in the grid —
    * it's absolutely positioned at the bottom-centre of .stage, overlaying the
    * lower part of the character area. Selector tiles are mostly transparent,
    * so the avatar still reads through behind them.
    */
   grid-template-areas:
-    "hero  stage  right"
-    "left  stage  right";
+    "stage  hero  right"
+    "stage  left  right";
   column-gap: 22px;
   row-gap: 14px;
 }
