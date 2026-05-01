@@ -45,7 +45,8 @@
 
 .character img {
   position: relative;
-  height: min(92%, 740px);
+  /* Fixed-size avatar — does not scale with viewport. */
+  height: 560px;
   width: auto;
   image-rendering: pixelated;
   filter: drop-shadow(0 22px 16px oklch(0 0 0 / 0.45));
