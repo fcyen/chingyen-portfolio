@@ -1,4 +1,4 @@
-import { PixelHeart } from "@/components/icons";
+import { PixelLightning } from "@/components/icons";
 import { MOCK_SUBSTACK_POSTS } from "@/lib/personaContent";
 import styles from "./SubstackWidget.module.css";
 
@@ -16,18 +16,15 @@ export default function SubstackWidget() {
     <div className={styles.root}>
       <div className={styles.head}>
         <span className={`mono uppr ${styles.label}`}>
-          // substack &nbsp;·&nbsp;{" "}
-          <span className={styles.labelAccent}>weekly</span>
+          // learnings
+          {/* <span className={styles.labelAccent}>learnings</span> */}
         </span>
-        <PixelHeart scale={2} />
+        <PixelLightning scale={2} />
       </div>
 
-      <h3 className={styles.heading}>Notes from a small lab.</h3>
+      <h3 className={styles.heading}>Substack</h3>
       <p className={styles.blurb}>
-        A weekly-ish letter on agents, evals, and what i&apos;m building this
-        week.
-        <br />
-        ~600 readers, no schedule discipline.
+        Casual writings about what I have been reading about or working on - no set schedule
       </p>
 
       <div className={styles.posts}>
