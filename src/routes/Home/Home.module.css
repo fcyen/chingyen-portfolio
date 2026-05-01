@@ -1,9 +1,7 @@
 /*
  * Home — the character-select stage. Owns the 3-column grid layout
- * matching the prototype's `app.jsx`, plus the min-size guard.
- *
- * Stage 2 only ships the layout bones with debug-bordered placeholders.
- * Real components land in stages 3–5.
+ * matching the prototype's `app.jsx`, plus the min-size guard. Stages 3–5
+ * filled in real cell content; mobile layout is Stage 8.
  */
 
 .stage {
@@ -18,9 +16,16 @@
   display: grid;
   grid-template-columns: minmax(340px, 380px) minmax(380px, 1fr) minmax(340px, 360px);
   grid-template-rows: minmax(0, 1fr) auto;
+  /*
+   * Middle column ("stage") spans both rows so the character art has the full
+   * column height to centre in. The WeaponSelector is no longer in the grid —
+   * it's absolutely positioned at the bottom-centre of .stage, overlaying the
+   * lower part of the character area. Selector tiles are mostly transparent,
+   * so the avatar still reads through behind them.
+   */
   grid-template-areas:
     "hero  stage  right"
-    "left  selector right";
+    "left  stage  right";
   column-gap: 22px;
   row-gap: 14px;
 }
@@ -38,11 +43,16 @@
 }
 
 .selector {
-  grid-area: selector;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  min-width: 0;
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.selector > * {
+  pointer-events: auto;
 }
 
 .left {
@@ -55,36 +65,4 @@
   height: 100%;
   min-height: 0;
   display: flex;
-}
-
-/*
- * Stage-2 debug skin: dashed outlines + a corner label so each grid cell
- * is visually obvious. Removed once real components land in later stages.
- */
-.placeholder {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 60px;
-  border: 1px dashed var(--line);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--ink-soft);
-  font-family: var(--mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.placeholder::before {
-  content: attr(data-label);
-  position: absolute;
-  top: 6px;
-  left: 8px;
-  font-size: 9px;
-  color: var(--ink);
-  background: var(--bg-tint);
-  padding: 0 4px;
 }

@@ -113,7 +113,7 @@ The centerpiece. This is the visually heaviest stage.
 
 ---
 
-## Stage 5 — Right card + bottom-left widget (static content)
+## Stage 5 — Right card + bottom-left widget (static content) [DONE]
 
 All three persona variants of the side panels, with placeholder data.
 
