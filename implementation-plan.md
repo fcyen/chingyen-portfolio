@@ -129,7 +129,7 @@ All three persona variants of the side panels, with placeholder data.
 
 ---
 
-## Stage 6 — Substack feed (replaces signup)
+## Stage 6 — Substack feed (replaces signup) [DONE]
 
 Build-time RSS → JSON → bundled.
 
