@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { Persona } from "@/lib/persona";
-import { PERSONA_ANNOTATIONS } from "@/lib/personaContent";
+// import { PERSONA_ANNOTATIONS } from "@/lib/personaContent";
 import styles from "./CharacterStage.module.css";
 
 /*
@@ -56,24 +56,24 @@ export default function CharacterStage({ persona }: { persona: Persona }) {
   );
 }
 
-function Annotations({ persona }: { persona: Persona }) {
-  const notes = PERSONA_ANNOTATIONS[persona];
-  return (
-    <>
-      <div className={`${styles.annotation} ${styles.annotationTL}`}>
-        <div className={styles.annotationDot} />
-        <div>
-          <div className={styles.annotationCode}>{notes[0].code}</div>
-          <div className={styles.annotationText}>{notes[0].text}</div>
-        </div>
-      </div>
-      <div className={`${styles.annotation} ${styles.annotationBR}`}>
-        <div>
-          <div className={styles.annotationCode}>{notes[1].code}</div>
-          <div className={styles.annotationText}>{notes[1].text}</div>
-        </div>
-        <div className={styles.annotationDot} />
-      </div>
-    </>
-  );
-}
+// function Annotations({ persona }: { persona: Persona }) {
+//   const notes = PERSONA_ANNOTATIONS[persona];
+//   return (
+//     <>
+//       <div className={`${styles.annotation} ${styles.annotationTL}`}>
+//         <div className={styles.annotationDot} />
+//         <div>
+//           <div className={styles.annotationCode}>{notes[0].code}</div>
+//           <div className={styles.annotationText}>{notes[0].text}</div>
+//         </div>
+//       </div>
+//       <div className={`${styles.annotation} ${styles.annotationBR}`}>
+//         <div>
+//           <div className={styles.annotationCode}>{notes[1].code}</div>
+//           <div className={styles.annotationText}>{notes[1].text}</div>
+//         </div>
+//         <div className={styles.annotationDot} />
+//       </div>
+//     </>
+//   );
+// }
