@@ -111,7 +111,7 @@ function Tile({
       <div className={styles.tileFooter}>
         <span className={`mono ${styles.slot}`}>0{index + 1}</span>
         <span className={`mono uppr ${styles.weapon}`}>
-          {locked ? "locked" : def.weapon}
+          {locked ? "coming soon" : def.weapon}
         </span>
       </div>
     </button>
