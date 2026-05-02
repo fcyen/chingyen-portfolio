@@ -1,24 +1,17 @@
 import { PixelLightning } from "@/components/icons";
-import { MOCK_SUBSTACK_POSTS } from "@/lib/personaContent";
+import posts from "@/data/substack.json";
+import type { SubstackPost } from "@/data/substack.d.ts";
 import styles from "./SubstackWidget.module.css";
 
-/*
- * SubstackWidget — bottom-left widget on Builder. Stage 5 ships the shell
- * with three mocked posts; Stage 6 wires it to the bundled RSS feed at
- * `src/data/substack.json` (built by `scripts/fetch-substack.mjs`).
- *
- * This is a *feed*, not a signup form — the prototype's email input was
- * dropped in the Stage 5 plan.
- */
+const SUBSTACK_URL = "https://fcyen.substack.com";
 
 export default function SubstackWidget() {
+  const feed = posts as SubstackPost[];
+
   return (
     <div className={styles.root}>
       <div className={styles.head}>
-        <span className={`mono uppr ${styles.label}`}>
-          // learnings
-          {/* <span className={styles.labelAccent}>learnings</span> */}
-        </span>
+        <span className={`mono uppr ${styles.label}`}>// learnings</span>
         <PixelLightning scale={2} />
       </div>
 
@@ -28,18 +21,39 @@ export default function SubstackWidget() {
       </p>
 
       <div className={styles.posts}>
-        {MOCK_SUBSTACK_POSTS.map((post) => (
-          // Real `href` lands in Stage 6 from the parsed RSS item link.
-          <a key={post.title} href="#" className={styles.post}>
-            <span className={styles.postTitle}>{post.title}</span>
-            <span className={styles.postDate}>{post.date}</span>
+        {feed.length > 0 ? (
+          feed.map((post) => (
+            <a
+              key={post.link + post.title}
+              href={post.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.post}
+            >
+              <span className={styles.postTitle}>{post.title}</span>
+              <span className={styles.postDate}>{post.pubDate}</span>
+            </a>
+          ))
+        ) : (
+          <a
+            href={SUBSTACK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.post}
+          >
+            <span className={styles.postTitle}>Read on Substack →</span>
           </a>
-        ))}
+        )}
       </div>
 
       <div className={styles.footer}>
         <span>fcyen.substack.com</span>
-        <a href="#" className={styles.readMore}>
+        <a
+          href={SUBSTACK_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.readMore}
+        >
           read more →
         </a>
       </div>
