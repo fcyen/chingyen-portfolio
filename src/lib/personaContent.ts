@@ -19,7 +19,7 @@ export const PERSONA_CONTENT: Record<Persona, PersonaContent> = {
   },
   crafter: {
     heroSummary:
-      "designer who designs with restraints and crafts with intention.",
+      "designer who designs with tastefulness and crafts with intention.",
   },
   explorer: {
     heroSummary:
@@ -134,22 +134,22 @@ export const RIGHT_CARD_META: Record<Persona, RightCardMeta> = {
     sticker: "BUILD/01",
     section: "section // work",
     heading: "Builder",
-    focus: { label: "AI engineering", suffix: "tools, agents, infra" },
+    focus: { label: "Fullstack engineering", suffix: "AI-powered prototypes, model integration, production observability" },
   },
   crafter: {
     sticker: "CRAFT/02",
-    section: "section // craft",
+    section: "section // design",
     heading: "Crafter",
-    focus: { label: "thoughtful design", suffix: "systems & product" },
+    focus: { label: "UX & Product", suffix: "design thinking" },
   },
   explorer: {
     sticker: "ROAM/03",
-    section: "section // film",
+    section: "section // photography",
     heading: "Explorer",
-    focus: { label: "photography", suffix: "35mm + digital" },
+    focus: { label: "streets", suffix: "A7C + 24-70mm" },
   },
 };
-
+ 
 export type SubstackPostStub = {
   title: string;
   /** Human-friendly relative date for the mock; replaced by real RSS in Stage 6. */
@@ -161,9 +161,9 @@ export type SubstackPostStub = {
  * RSS feed at build time (`scripts/fetch-substack.mjs` → `src/data/substack.json`).
  */
 export const MOCK_SUBSTACK_POSTS: readonly SubstackPostStub[] = [
-  { title: "Why your eval suite lies to you", date: "4d ago" },
-  { title: "Notes on agent harnesses, week 3", date: "2w ago" },
-  { title: "A small lab, a small letter", date: "1mo ago" },
+  // { title: "Why your eval suite lies to you", date: "4d ago" },
+  // { title: "Notes on agent harnesses, week 3", date: "2w ago" },
+  { title: "Building Products in the Age of AI", date: "recent" },
 ];
 
 export type PersonaTag = {
@@ -186,7 +186,7 @@ export const PERSONA_TAGS: Record<Exclude<Persona, "builder">, PersonaTag> = {
       { label: "loves", value: "type, grids, restraint" },
       { label: "tools", value: "Figma · Linear · paper" },
     ],
-    quote: "Design slowly, then ship the boring version first.",
+    quote: "Designing is about choosing the right problems to solve",
     attribution: "// craft.tag",
   },
   explorer: {

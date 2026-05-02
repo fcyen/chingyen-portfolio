@@ -31,7 +31,8 @@ export default function CharacterStage({ persona }: { persona: Persona }) {
         className={`${styles.spotlight} ${isBuilder ? styles.spotlightDark : styles.spotlightLight}`}
       />
 
-      <Annotations persona={persona} />
+      {/* TODO: Renable this when I have ideas */}
+      {/* <Annotations persona={persona} /> */}
 
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
