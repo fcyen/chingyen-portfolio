@@ -114,3 +114,10 @@
 .readMore:focus-visible {
   border-bottom-color: oklch(0.95 0.01 80);
 }
+
+/* Mobile (≤1100px): full-width card. */
+@media (max-width: 1100px) {
+  .root {
+    width: 100%;
+  }
+}

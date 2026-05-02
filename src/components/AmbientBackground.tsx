@@ -54,11 +54,15 @@ function BuilderMatrixCanvas({ active }: { active: boolean }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
-    ) {
-      return;
+    if (typeof window !== "undefined" && window.matchMedia) {
+      // Reduced-motion users + mobile/tablet (≤1100px) get the static
+      // persona gradient only; skip the rAF loop entirely.
+      if (
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+        window.matchMedia("(max-width: 1100px)").matches
+      ) {
+        return;
+      }
     }
 
     const ctx = canvas.getContext("2d");

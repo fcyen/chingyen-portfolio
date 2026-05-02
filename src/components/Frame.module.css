@@ -32,3 +32,14 @@
   bottom: -4px;
   right: -4px;
 }
+
+/*
+ * Mobile (≤1100px): tighter inset so the frame doesn't crowd the
+ * single-column content. The corner squares stay so the chrome reads
+ * the same.
+ */
+@media (max-width: 1100px) {
+  .frame {
+    inset: 8px;
+  }
+}

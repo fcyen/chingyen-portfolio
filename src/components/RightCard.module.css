@@ -336,3 +336,50 @@
   color: var(--ink);
   letter-spacing: 0.1em;
 }
+
+/*
+ * Mobile (≤1100px): the panel auto-grows with its content (no internal
+ * scroll, since the page itself scrolls). Padding reduced for narrower
+ * screens; serif heading scales down.
+ */
+@media (max-width: 1100px) {
+  .root {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .header {
+    padding: 18px 18px 12px;
+  }
+
+  .heading {
+    font-size: 26px;
+  }
+
+  .body {
+    flex: 0 1 auto;
+    overflow-y: visible;
+    padding: 14px 18px 18px;
+  }
+
+  .footer {
+    padding: 10px 18px;
+  }
+
+  .lockWrap {
+    min-height: 280px;
+  }
+
+  .timelineRole {
+    font-size: 18px;
+  }
+
+  .timelineBlurb {
+    font-size: 12px;
+  }
+
+  .postTitle {
+    font-size: 17px;
+  }
+}
