@@ -1,8 +1,28 @@
 /*
- * Home — the character-select stage. Owns the 3-column grid layout
- * matching the prototype's `app.jsx`, plus the min-size guard. Stages 3–5
- * filled in real cell content; mobile layout is Stage 8.
+ * Home — the character-select stage.
+ *
+ * Desktop (≥1101px): a 3-column grid that splits the middle column into
+ * a hero row on top and a widget row underneath, with the character +
+ * weapon selector taking the entire left column and the right card the
+ * entire right column.
+ *
+ * Mobile (≤1100px): the same children stack into a single scrolling
+ * column — Hero, then CharacterStage + WeaponSelector side-by-side, then
+ * the "// scroll for details" hint, then RightCard, then bottom widget.
  */
+
+/*
+ * Body scroll lock applies on desktop only. On mobile, the page scrolls
+ * naturally so the user can reach the right card and bottom widget.
+ */
+:global(body.home-active) {
+  overflow: hidden;
+}
+@media (max-width: 1100px) {
+  :global(body.home-active) {
+    overflow: visible;
+  }
+}
 
 .stage {
   position: relative;
@@ -15,18 +35,12 @@
 
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr);
-  grid-template-rows: 1fr;
-  grid-template-areas: "stage  col2  right";
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-areas:
+    "stage hero   right"
+    "stage widget right";
   column-gap: 22px;
-}
-
-.col2 {
-  grid-area: col2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  min-height: 0;
+  row-gap: 14px;
 }
 
 .center {
@@ -46,6 +60,7 @@
 
 .selector {
   flex-shrink: 0;
+  width: 100%;
   padding-bottom: 12px;
   z-index: 5;
   pointer-events: none;
@@ -55,9 +70,131 @@
   pointer-events: auto;
 }
 
+.hero {
+  grid-area: hero;
+  align-self: start;
+  justify-self: center;
+  min-width: 0;
+}
+
+.widget {
+  grid-area: widget;
+  align-self: start;
+  justify-self: center;
+  min-width: 0;
+}
+
 .right {
   grid-area: right;
   height: 100%;
   min-height: 0;
   display: flex;
+}
+
+/* Scroll hint — mobile only, hidden on desktop. */
+.scrollHint {
+  display: none;
+}
+
+/* ──────────────────────────────────────────────────────────────────── *
+ * Mobile (≤1100px): single scrolling column.
+ * ──────────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .stage {
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    min-height: 0;
+    padding: 16px 14px max(28px, env(safe-area-inset-bottom));
+    padding-top: max(16px, env(safe-area-inset-top));
+
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .hero {
+    order: 1;
+    width: 100%;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+
+  .center {
+    order: 2;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .characterWrap {
+    flex: 1 1 auto;
+    min-width: 0;
+    height: 280px;
+    min-height: 280px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .selector {
+    flex: 0 0 92px;
+    padding-bottom: 0;
+    pointer-events: auto;
+    align-self: stretch;
+  }
+
+  .scrollHint {
+    order: 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 4px;
+    padding: 6px 4px 0;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    animation: scroll-hint-bounce 1.4s cubic-bezier(0.5, 0.05, 0.5, 1) infinite;
+  }
+
+  .scrollHintArrow {
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scrollHint {
+      animation: none;
+    }
+  }
+
+  .right {
+    order: 4;
+    width: 100%;
+    height: auto;
+    min-height: 70vh;
+    display: block;
+  }
+
+  .widget {
+    order: 5;
+    width: 100%;
+    align-self: stretch;
+    justify-self: stretch;
+  }
+}
+
+@keyframes scroll-hint-bounce {
+  0%   { transform: translateY(0);    opacity: 0.6; }
+  20%  { transform: translateY(-1px); opacity: 0.85; }
+  40%  { transform: translateY(4px);  opacity: 0.6; }
+  60%  { transform: translateY(0);    opacity: 0.6; }
+  80%  { transform: translateY(2px);  opacity: 0.6; }
+  100% { transform: translateY(0);    opacity: 0.6; }
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, type MouseEvent } from "react";
 import { useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Frame from "@/components/Frame";
@@ -17,14 +17,18 @@ import {
 } from "@/lib/persona";
 import styles from "./Home.module.css";
 
+const DETAILS_ANCHOR_ID = "home-details";
+
 /**
  * Home — character-select stage. Owns the layout shell, persona state +
  * deep-link via `?p=...`, keyboard nav (1/2/3 + ←/→ skipping locked),
- * body-level scroll lock, and the AmbientBackground / Frame chrome.
+ * body-level scroll lock (desktop only), and the AmbientBackground / Frame
+ * chrome.
  *
- * Cell components: HeroCard (top-left), CharacterStage (centre),
- * WeaponSelector (bottom-centre), Substack/PersonaTagCard (bottom-left),
- * RightCard (right column).
+ * On mobile (≤1100px) the layout collapses to a single scrolling column with
+ * CharacterStage + WeaponSelector side-by-side, a "// scroll for details"
+ * hint, the right card below, then the bottom widget. Body scroll is allowed
+ * so the user can reach everything below the fold.
  */
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -53,13 +57,14 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Body-level styles only on Home: lock scroll, expose persona for any
-  // body-scoped CSS, and clean up on unmount so other routes scroll normally.
+  // Body-level styles only on Home: lock scroll on desktop (where the layout
+  // is sized to the viewport), expose persona for any body-scoped CSS, and
+  // clean up on unmount. On mobile we let the body scroll naturally — see
+  // .home-active rule in Home.module.css.
   useEffect(() => {
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.body.classList.add("home-active");
     return () => {
-      document.body.style.overflow = prevOverflow;
+      document.body.classList.remove("home-active");
     };
   }, []);
 
@@ -99,6 +104,34 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [persona]);
 
+  const onScrollHintClick = (e: MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const el = document.getElementById(DETAILS_ANCHOR_ID);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // Crossfade the bottom widget on persona switch. Builder shows
+  // SubstackWidget; the others show PersonaTagCard. Keying by slot
+  // ("substack" vs "tag-<persona>") so swapping crafter↔explorer also
+  // animates.
+  const widget = (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={persona === "builder" ? "substack" : `tag-${persona}`}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 8 }}
+        transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+      >
+        {persona === "builder" ? (
+          <SubstackWidget />
+        ) : (
+          <PersonaTagCard persona={persona} />
+        )}
+      </motion.div>
+    </AnimatePresence>
+  );
+
   return (
     <>
       <AmbientBackground persona={persona} />
@@ -113,34 +146,27 @@ export default function Home() {
           </div>
         </section>
 
-        <section className={styles.col2}>
+        <div className={styles.hero}>
           <HeroCard persona={persona} />
-          {/*
-            Crossfade the bottom widget on persona switch. Builder shows
-            SubstackWidget; the other personas show PersonaTagCard. We key by
-            the rendered slot ("substack" vs "tag-<persona>") rather than by
-            persona alone so swapping crafter↔explorer also gets a transition.
-          */}
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={persona === "builder" ? "substack" : `tag-${persona}`}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
-            >
-              {persona === "builder" ? (
-                <SubstackWidget />
-              ) : (
-                <PersonaTagCard persona={persona} />
-              )}
-            </motion.div>
-          </AnimatePresence>
-        </section>
+        </div>
 
-        <section className={styles.right}>
+        {/* Mobile-only: scroll hint that jumps the user to RightCard. */}
+        <a
+          href={`#${DETAILS_ANCHOR_ID}`}
+          className={styles.scrollHint}
+          onClick={onScrollHintClick}
+        >
+          <span className="mono uppr">// scroll for details</span>
+          <span className={styles.scrollHintArrow} aria-hidden="true">
+            ▼
+          </span>
+        </a>
+
+        <section className={styles.right} id={DETAILS_ANCHOR_ID}>
           <RightCard persona={persona} />
         </section>
+
+        <div className={styles.widget}>{widget}</div>
       </main>
     </>
   );

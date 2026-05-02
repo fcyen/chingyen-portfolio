@@ -113,3 +113,19 @@
 @media (prefers-reduced-motion: reduce) {
   .floaty { animation: none; }
 }
+
+/*
+ * Mobile (≤1100px): the character image scales to fit the smaller stage
+ * (~280px tall) instead of staying at its desktop 560px fixed height.
+ * Annotations stay hidden (already off in CharacterStage.tsx).
+ */
+@media (max-width: 1100px) {
+  .character img {
+    height: 100%;
+    max-height: 100%;
+    width: auto;
+    max-width: 90%;
+    object-fit: contain;
+    filter: drop-shadow(0 12px 10px oklch(0 0 0 / 0.4));
+  }
+}

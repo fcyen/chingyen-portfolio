@@ -161,7 +161,7 @@ Crafter post list links into real pages.
 
 ---
 
-## Stage 8 — Mobile layout
+## Stage 8 — Mobile layout [DONE]
 
 Dedicated stacked layout for everything ≤1100px (tablet uses the same layout as mobile, scaled). Likely the most visual-design-heavy stage.
 
