@@ -88,13 +88,15 @@ export type PostEntry = {
   slug?: string;
 };
 
-/** Crafter right-card post list. Real linking lands in Stage 7. */
+/** Crafter right-card post list. */
 export const CRAFTER_POSTS: readonly PostEntry[] = [
-  { num: "01", title: "Designing a calmer notification system", meta: "case study · 12 min", tag: "product" },
-  { num: "02", title: "A type system for messy product data", meta: "case study · 8 min", tag: "systems" },
-  { num: "03", title: "Onboarding without modals", meta: "essay · 4 min", tag: "patterns" },
-  { num: "04", title: "What stickies actually do for a team", meta: "field notes · 6 min", tag: "process" },
-  { num: "05", title: "Redesigning a financial dashboard", meta: "case study · 14 min", tag: "product" },
+  {
+    num: "01",
+    title: "From Conversation to Working Prototype",
+    meta: "case study · 9 min",
+    tag: "product",
+    slug: "kasih-link-phase-1",
+  },
 ];
 
 export type ExplorerPhoto = {

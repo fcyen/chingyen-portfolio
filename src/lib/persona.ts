@@ -12,9 +12,12 @@ export type PersonaDef = {
   locked?: boolean;
 };
 
+// Crafter is unlocked in dev only while the section is being filled out.
+const CRAFTER_LOCKED = !import.meta.env.DEV;
+
 export const PERSONAS: readonly PersonaDef[] = [
   { key: "builder", label: "the builder", weapon: "laptop" },
-  { key: "crafter", label: "the crafter", weapon: "stickies", locked: true },
+  { key: "crafter", label: "the crafter", weapon: "stickies", locked: CRAFTER_LOCKED },
   { key: "explorer", label: "the explorer", weapon: "camera", locked: true },
 ] as const;
 

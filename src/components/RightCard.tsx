@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowR, ArrowSE, LockIcon } from "@/components/icons";
 import type { Persona } from "@/lib/persona";
 import {
@@ -96,19 +97,29 @@ function CrafterBody() {
         &lt;posts len={CRAFTER_POSTS.length}&gt;
       </div>
       <div className={styles.postList}>
-        {CRAFTER_POSTS.map((p) => (
-          // Stage 7 swaps these for `<Link to={`/work/${p.slug}`}>`.
-          <a key={p.num} href="#" className={styles.postRow}>
-            <div className={styles.postHead}>
-              <span className={`mono ${styles.postNum}`}>{p.num}</span>
-              <span className={`mono uppr ${styles.postTag}`}>[ {p.tag} ]</span>
-            </div>
-            <div className={styles.postTitle}>{p.title}</div>
-            <div className={`mono ${styles.postMeta}`}>
-              {p.meta} <ArrowR />
-            </div>
-          </a>
-        ))}
+        {CRAFTER_POSTS.map((p) => {
+          const inner = (
+            <>
+              <div className={styles.postHead}>
+                <span className={`mono ${styles.postNum}`}>{p.num}</span>
+                <span className={`mono uppr ${styles.postTag}`}>[ {p.tag} ]</span>
+              </div>
+              <div className={styles.postTitle}>{p.title}</div>
+              <div className={`mono ${styles.postMeta}`}>
+                {p.meta} <ArrowR />
+              </div>
+            </>
+          );
+          return p.slug ? (
+            <Link key={p.num} to={`/work/${p.slug}`} className={styles.postRow}>
+              {inner}
+            </Link>
+          ) : (
+            <a key={p.num} href="#" className={styles.postRow}>
+              {inner}
+            </a>
+          );
+        })}
       </div>
       <a href="#" className={`arrow-link ${styles.postsAll}`}>
         all case studies <ArrowSE />
