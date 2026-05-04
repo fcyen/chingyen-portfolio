@@ -120,7 +120,9 @@ export default function Entry() {
       <section className={styles.panel}>
         <div className={styles.intro}>
           <p className={styles.systemLabel}>// CHINGYEN.PORTFOLIO</p>
-          <h1 id="entry-title">Where should we begin?</h1>
+          <h1 id="entry-title" className="serif">
+            Where should we begin?
+          </h1>
           <p className={styles.lede}>
             Select the body of work most relevant to your visit.
             <span aria-hidden="true" />
