@@ -39,7 +39,7 @@ export default function PersonaTagCard({ persona }: Props) {
       </div>
 
       <p className={styles.quote}>&ldquo;{tag.quote}&rdquo;</p>
-      <div className={`mono ${styles.attribution}`}>{tag.attribution}</div>
+      {/* <div className={`mono ${styles.attribution}`}>{tag.attribution}</div> */}
     </div>
   );
 }
