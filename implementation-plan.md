@@ -145,17 +145,12 @@ Build-time RSS → JSON → bundled.
 
 ---
 
-## Stage 7 — Case-study post pages
+## Stage 7 — Case-study post pages [DONE]
 
 Crafter post list links into real pages.
 
-- [ ] Install `@mdx-js/rollup`, configure Vite plugin
-- [ ] `posts/<slug>.mdx` with frontmatter (title, tag, readTime, date)
-- [ ] `src/lib/posts.ts` — load all MDX via `import.meta.glob`, expose typed list
-- [ ] `routes/Work/[slug].tsx` — generic post layout (own header, no character-select chrome)
-- [ ] Wire Crafter post list to use real `<Link to={`/work/${slug}`}>`
-- [ ] One sample post in repo so the route is testable
-- [ ] Update 404 page to be on-brand
+- [x] Wire Crafter post list to use real `<Link to={`/work/${slug}`}>`
+- [x] One sample post in repo (KasihLink Phase 1) — bespoke page under `routes/projects/`, dispatched by `WorkPost` on slug
 
 **Done when**: clicking a post in the Crafter view navigates to a working post page (or external link).
 
@@ -208,6 +203,8 @@ Dedicated stacked layout for everything ≤1100px (tablet uses the same layout a
 
 - Bespoke project pages under `/projects/<slug>` — architecture supports them, content/design TBD
 - Real Explorer photo grid (currently locked / placeholder)
+- MDX pipeline — `@mdx-js/rollup`, `posts/<slug>.mdx` with frontmatter, `src/lib/posts.ts` via `import.meta.glob` (current case studies use bespoke pages under `routes/projects/`)
+- On-brand 404 page
 - CMS integration if writing volume increases
 - i18n
 - Light/dark mode toggle (the design is light-only)

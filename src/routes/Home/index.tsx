@@ -110,25 +110,25 @@ export default function Home() {
     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Crossfade the bottom widget on persona switch. Builder shows
-  // SubstackWidget; the others show PersonaTagCard. Keying by slot
-  // ("substack" vs "tag-<persona>") so swapping crafter↔explorer also
-  // animates.
+  // Builder shows SubstackWidget; explorer shows PersonaTagCard; crafter
+  // shows nothing (no bottom widget while the section is being built out).
   const widget = (
     <AnimatePresence mode="wait" initial={false}>
-      <motion.div
-        key={persona === "builder" ? "substack" : `tag-${persona}`}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 8 }}
-        transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
-      >
-        {persona === "builder" ? (
-          <SubstackWidget />
-        ) : (
-          <PersonaTagCard persona={persona} />
-        )}
-      </motion.div>
+      {persona !== "crafter" && (
+        <motion.div
+          key={persona === "builder" ? "substack" : `tag-${persona}`}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 8 }}
+          transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+        >
+          {persona === "builder" ? (
+            <SubstackWidget />
+          ) : (
+            <PersonaTagCard persona={persona} />
+          )}
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 

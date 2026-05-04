@@ -14,7 +14,7 @@ export type PersonaDef = {
 
 export const PERSONAS: readonly PersonaDef[] = [
   { key: "builder", label: "the builder", weapon: "laptop" },
-  { key: "crafter", label: "the crafter", weapon: "stickies", locked: true },
+  { key: "crafter", label: "the crafter", weapon: "stickies" },
   { key: "explorer", label: "the explorer", weapon: "camera", locked: true },
 ] as const;
 
