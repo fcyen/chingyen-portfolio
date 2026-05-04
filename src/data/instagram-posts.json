@@ -1,13 +1,13 @@
 {
   "username": "jaedoncy",
   "posts": [
-    "https://www.instagram.com/p/DKKJ_xUvfG1/",
-    "https://www.instagram.com/p/C_BHmE9zOOf/",
-    "https://www.instagram.com/p/C82BthIvUGF/",
-    "https://www.instagram.com/p/C3Xy3ATP0fk/",
-    "https://www.instagram.com/p/CpXCJJmvX75/",
-    "https://www.instagram.com/p/CfGSQdgvpuj/",
-    "https://www.instagram.com/p/CCataMNJOGF/",
-    "https://www.instagram.com/p/CARjd2knFKM/"
+    { "postUrl": "https://www.instagram.com/p/DKKJ_xUvfG1/", "img": "/assets/ig/01.jpg" },
+    { "postUrl": "https://www.instagram.com/p/C_BHmE9zOOf/", "img": "/assets/ig/02.jpg" },
+    { "postUrl": "https://www.instagram.com/p/C82BthIvUGF/", "img": "/assets/ig/03.jpg" },
+    { "postUrl": "https://www.instagram.com/p/C3Xy3ATP0fk/", "img": "/assets/ig/04.jpg" },
+    { "postUrl": "https://www.instagram.com/p/CpXCJJmvX75/", "img": "/assets/ig/05.jpg" },
+    { "postUrl": "https://www.instagram.com/p/CfGSQdgvpuj/", "img": "/assets/ig/06.jpg" },
+    { "postUrl": "https://www.instagram.com/p/CCataMNJOGF/", "img": "/assets/ig/07.jpg" },
+    { "postUrl": "https://www.instagram.com/p/CARjd2knFKM/", "img": "/assets/ig/08.jpg" }
   ]
 }

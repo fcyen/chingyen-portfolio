@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowR } from "@/components/icons";
@@ -6,6 +5,7 @@ import type { Persona } from "@/lib/persona";
 import {
   BUILDER_TIMELINE,
   CRAFTER_POSTS,
+  EXPLORER_PHOTOS,
   RIGHT_CARD_META,
 } from "@/lib/personaContent";
 import instagramPosts from "@/data/instagram-posts.json";
@@ -126,24 +126,8 @@ function CrafterBody() {
   );
 }
 
-type InstagramWindow = Window & { instgrm?: { Embeds: { process: () => void } } };
-
 function ExplorerBody() {
   const { username, posts } = instagramPosts;
-
-  useEffect(() => {
-    const w = window as InstagramWindow;
-    if (w.instgrm) {
-      w.instgrm.Embeds.process();
-      return;
-    }
-    if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
-      const s = document.createElement("script");
-      s.src = "https://www.instagram.com/embed.js";
-      s.async = true;
-      document.body.appendChild(s);
-    }
-  }, []);
 
   return (
     <div>
@@ -159,14 +143,32 @@ function ExplorerBody() {
         </a>
       </div>
 
-      <div className={styles.igEmbedList}>
-        {posts.map((url) => (
-          <blockquote
-            key={url}
-            className="instagram-media"
-            data-instgrm-permalink={url}
-            data-instgrm-version="14"
-          />
+      <div className={styles.igGrid}>
+        {posts.map((post, i) => (
+          <a
+            key={post.postUrl}
+            href={post.postUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.igCell}
+          >
+            {post.img ? (
+              <img
+                src={post.img}
+                alt=""
+                className={styles.igPhoto}
+                loading="lazy"
+                draggable={false}
+              />
+            ) : (
+              <div
+                className={styles.igPlaceholder}
+                style={{
+                  background: `linear-gradient(${(i * 37) % 360}deg, ${EXPLORER_PHOTOS[i % EXPLORER_PHOTOS.length].palette[0]}, ${EXPLORER_PHOTOS[i % EXPLORER_PHOTOS.length].palette[1]})`,
+                }}
+              />
+            )}
+          </a>
         ))}
       </div>
     </div>
