@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowR, LockIcon } from "@/components/icons";
+import { ArrowR } from "@/components/icons";
 import type { Persona } from "@/lib/persona";
 import {
   BUILDER_TIMELINE,
@@ -8,7 +8,18 @@ import {
   EXPLORER_PHOTOS,
   RIGHT_CARD_META,
 } from "@/lib/personaContent";
+import instagramData from "@/data/instagram.json";
 import styles from "./RightCard.module.css";
+
+type IGPost = {
+  id: string;
+  media_type: "IMAGE" | "CAROUSEL_ALBUM" | "VIDEO";
+  media_url: string;
+  thumbnail_url?: string;
+  permalink: string;
+  caption?: string;
+  timestamp: string;
+};
 
 /*
  * RightCard — the right-column panel of the character-select stage.
@@ -126,43 +137,78 @@ function CrafterBody() {
 }
 
 function ExplorerBody() {
+  const posts = (instagramData as { username: string; posts: IGPost[] }).posts;
+  const username = instagramData.username;
+  const hasPosts = posts.length > 0;
+
   return (
-    <div className={styles.lockWrap}>
-      <div className={styles.lockGrid} aria-hidden="true">
-        <div className={styles.lockGridHead}>
-          <span className={`mono uppr ${styles.section}`}>@chingyen.raw</span>
-          <span className={`mono ${styles.section} ${styles.frames}`}>
-            &lt;<b>{EXPLORER_PHOTOS.length * 27 + 4}</b>&gt; frames
-          </span>
-        </div>
-        <div className={styles.lockGridTiles}>
-          {EXPLORER_PHOTOS.map((photo, i) => (
-            <div
-              key={photo.caption}
-              className={styles.lockGridTile}
-              style={{
-                background: `linear-gradient(${(i * 37) % 360}deg, ${photo.palette[0]}, ${photo.palette[1]})`,
-              }}
-            />
-          ))}
-        </div>
+    <div>
+      <div className={styles.igHead}>
+        <span className={`mono ${styles.bodyEyebrow}`}>
+          // @{username}
+        </span>
+        <a
+          href={`https://www.instagram.com/${username}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`mono ${styles.igProfileLink}`}
+        >
+          view profile →
+        </a>
       </div>
 
-      <div className={styles.lockOverlay}>
-        <div className={styles.lockBadge}>
-          <LockIcon size={26} />
-        </div>
-        <div className={`mono uppr ${styles.lockEyebrow}`}>
-          // level&nbsp;03 &nbsp;·&nbsp; locked
-        </div>
-        <h3 className={`serif ${styles.lockHeading}`}>
-          The Explorer is still in development.
-        </h3>
-        <p className={styles.lockBody}>
-          Photo grid coming soon. Pick another weapon to keep playing.
-        </p>
-        <div className={styles.lockChip}>◇ UNLOCK CONDITION: TBD</div>
+      <div className={styles.igGrid}>
+        {hasPosts
+          ? posts.map((post) => {
+              const src =
+                post.media_type === "VIDEO"
+                  ? (post.thumbnail_url ?? post.media_url)
+                  : post.media_url;
+              return (
+                <a
+                  key={post.id}
+                  href={post.permalink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.igPost}
+                >
+                  <img
+                    src={src}
+                    alt={post.caption ?? ""}
+                    className={styles.igImg}
+                    loading="lazy"
+                  />
+                  {post.caption && (
+                    <div className={styles.igCaption}>
+                      <span>{post.caption.slice(0, 80)}</span>
+                    </div>
+                  )}
+                </a>
+              );
+            })
+          : EXPLORER_PHOTOS.map((photo, i) => (
+              <a
+                key={photo.caption}
+                href={`https://www.instagram.com/${username}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.igPost} ${styles.igPostPlaceholder}`}
+                style={{
+                  background: `linear-gradient(${(i * 37) % 360}deg, ${photo.palette[0]}, ${photo.palette[1]})`,
+                }}
+              >
+                <div className={styles.igCaption}>
+                  <span>{photo.caption}</span>
+                </div>
+              </a>
+            ))}
       </div>
+
+      {!hasPosts && (
+        <p className={`mono ${styles.igFeedNote}`}>
+          // set INSTAGRAM_TOKEN in Netlify to load live feed
+        </p>
+      )}
     </div>
   );
 }
