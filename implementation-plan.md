@@ -145,7 +145,7 @@ Build-time RSS → JSON → bundled.
 
 ---
 
-## Stage 7 — Case-study post pages
+## Stage 7 — Case-study post pages [DONE]
 
 Crafter post list links into real pages.
 
