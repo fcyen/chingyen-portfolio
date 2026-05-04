@@ -24,11 +24,18 @@ const CHARACTER_ALT: Record<Persona, string> = {
 
 export default function CharacterStage({ persona }: { persona: Persona }) {
   const isBuilder = persona === "builder";
+  const isExplorer = persona === "explorer";
 
   return (
     <div className={styles.root}>
       <div
-        className={`${styles.spotlight} ${isBuilder ? styles.spotlightDark : styles.spotlightLight}`}
+        className={`${styles.spotlight} ${
+          isBuilder
+            ? styles.spotlightDark
+            : isExplorer
+              ? styles.spotlightExplorer
+              : styles.spotlightLight
+        }`}
       />
 
       {/* TODO: Renable this when I have ideas */}

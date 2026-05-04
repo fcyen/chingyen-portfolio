@@ -26,6 +26,14 @@
   background: radial-gradient(ellipse at center, oklch(1 0 0 / 0.45) 0%, transparent 65%);
 }
 
+.spotlightExplorer {
+  background: radial-gradient(
+    ellipse at center,
+    oklch(0.82 0.08 145 / 0.18) 0%,
+    transparent 62%
+  );
+}
+
 .spotlightDark {
   background: radial-gradient(
     ellipse at center,
