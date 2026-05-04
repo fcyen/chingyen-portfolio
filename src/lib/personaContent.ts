@@ -148,7 +148,7 @@ export const RIGHT_CARD_META: Record<Persona, RightCardMeta> = {
     sticker: "ROAM/03",
     section: "section // photography",
     heading: "Explorer",
-    focus: { label: "streets", suffix: "A7C + 24-70mm" },
+    focus: { label: "landscape / streets", suffix: "A7C + 24-70mm" },
   },
 };
  
@@ -193,11 +193,11 @@ export const PERSONA_TAGS: Record<Exclude<Persona, "builder">, PersonaTag> = {
   },
   explorer: {
     stats: [
-      { label: "kit", value: "35mm + Fuji X" },
-      { label: "habit", value: "golden hour" },
-      { label: "frames", value: "247 in the queue" },
+      { label: "kit", value: "Sony A7C + 24/70mm" },
+      { label: "hour", value: "sunrise" },
+      { label: "edit", value: "Lightroom" },
     ],
-    quote: "Better to be lost outside than bored inside.",
+    quote: "In the end we arrive where we started, and know the place for the first time.",
     attribution: "// roam.tag",
   },
 };
