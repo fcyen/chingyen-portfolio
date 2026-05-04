@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowR, LockIcon } from "@/components/icons";
+import { ArrowR } from "@/components/icons";
 import type { Persona } from "@/lib/persona";
 import {
   BUILDER_TIMELINE,
@@ -8,6 +8,7 @@ import {
   EXPLORER_PHOTOS,
   RIGHT_CARD_META,
 } from "@/lib/personaContent";
+import instagramPosts from "@/data/instagram-posts.json";
 import styles from "./RightCard.module.css";
 
 /*
@@ -19,7 +20,7 @@ import styles from "./RightCard.module.css";
  * Body subcomponents:
  *   - BuilderBody:  timeline with diamond markers
  *   - CrafterBody:  list of posts (links inert until Stage 7)
- *   - ExplorerBody: blurred 3×3 photo grid behind a locked overlay
+ *   - ExplorerBody: curated Instagram post embeds via embed.js
  */
 
 export default function RightCard({ persona }: { persona: Persona }) {
@@ -126,42 +127,49 @@ function CrafterBody() {
 }
 
 function ExplorerBody() {
+  const { username, posts } = instagramPosts;
+
   return (
-    <div className={styles.lockWrap}>
-      <div className={styles.lockGrid} aria-hidden="true">
-        <div className={styles.lockGridHead}>
-          <span className={`mono uppr ${styles.section}`}>@chingyen.raw</span>
-          <span className={`mono ${styles.section} ${styles.frames}`}>
-            &lt;<b>{EXPLORER_PHOTOS.length * 27 + 4}</b>&gt; frames
-          </span>
-        </div>
-        <div className={styles.lockGridTiles}>
-          {EXPLORER_PHOTOS.map((photo, i) => (
-            <div
-              key={photo.caption}
-              className={styles.lockGridTile}
-              style={{
-                background: `linear-gradient(${(i * 37) % 360}deg, ${photo.palette[0]}, ${photo.palette[1]})`,
-              }}
-            />
-          ))}
-        </div>
+    <div>
+      <div className={styles.igHead}>
+        <span className={`mono ${styles.bodyEyebrow}`}>// @{username}</span>
+        <a
+          href={`https://www.instagram.com/${username}/`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={`mono ${styles.igProfileLink}`}
+        >
+          view profile →
+        </a>
       </div>
 
-      <div className={styles.lockOverlay}>
-        <div className={styles.lockBadge}>
-          <LockIcon size={26} />
-        </div>
-        <div className={`mono uppr ${styles.lockEyebrow}`}>
-          // level&nbsp;03 &nbsp;·&nbsp; locked
-        </div>
-        <h3 className={`serif ${styles.lockHeading}`}>
-          The Explorer is still in development.
-        </h3>
-        <p className={styles.lockBody}>
-          Photo grid coming soon. Pick another weapon to keep playing.
-        </p>
-        <div className={styles.lockChip}>◇ UNLOCK CONDITION: TBD</div>
+      <div className={styles.igGrid}>
+        {posts.map((post, i) => (
+          <a
+            key={post.postUrl}
+            href={post.postUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.igCell}
+          >
+            {post.img ? (
+              <img
+                src={post.img}
+                alt=""
+                className={styles.igPhoto}
+                loading="lazy"
+                draggable={false}
+              />
+            ) : (
+              <div
+                className={styles.igPlaceholder}
+                style={{
+                  background: `linear-gradient(${(i * 37) % 360}deg, ${EXPLORER_PHOTOS[i % EXPLORER_PHOTOS.length].palette[0]}, ${EXPLORER_PHOTOS[i % EXPLORER_PHOTOS.length].palette[1]})`,
+                }}
+              />
+            )}
+          </a>
+        ))}
       </div>
     </div>
   );

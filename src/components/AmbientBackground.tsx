@@ -32,7 +32,8 @@ export default function AmbientBackground({ persona }: { persona: Persona }) {
       <div
         className={`${styles.skin} ${styles.explorer} ${persona === "explorer" ? styles.active : ""}`}
       >
-        <div className={styles.explorerGrain} />
+        <div className={styles.explorerGrass} />
+        <div className={styles.explorerVignette} />
       </div>
     </div>
   );

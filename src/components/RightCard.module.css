@@ -241,100 +241,53 @@
   margin-top: 14px;
 }
 
-/* ---- Explorer body: locked grid ---- */
+/* ---- Explorer body: photo grid ---- */
 
-.lockWrap {
-  position: relative;
-  min-height: 360px;
-}
-
-.lockGrid {
-  filter: blur(3px) grayscale(0.6);
-  opacity: 0.45;
-  pointer-events: none;
-  user-select: none;
-}
-
-.lockGridHead {
+.igHead {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
   margin-bottom: 10px;
 }
 
-.lockGridHead .frames b {
-  color: var(--ink);
-  font-weight: 500;
+.igProfileLink {
+  font-size: 10px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 150ms ease;
 }
 
-.lockGridTiles {
+.igProfileLink:hover {
+  color: var(--ink);
+}
+
+.igGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  gap: 3px;
 }
 
-.lockGridTile {
+.igCell {
+  display: block;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
-.lockOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 24px;
-  text-align: center;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      transparent 0 8px,
-      oklch(0.18 0.012 60 / 0.04) 8px 9px
-    ),
-    oklch(0.99 0.006 80 / 0.55);
+.igPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 300ms ease;
 }
 
-.lockBadge {
-  width: 56px;
-  height: 56px;
-  display: grid;
-  place-items: center;
-  background: var(--ink);
-  color: var(--bg-tint);
+.igCell:hover .igPhoto {
+  transform: scale(1.04);
 }
 
-.lockEyebrow {
-  font-size: 10px;
-  color: var(--ink-soft);
-  letter-spacing: 0.18em;
-}
-
-.lockHeading {
-  font-family: var(--serif);
-  font-size: 28px;
-  line-height: 1.05;
-  font-style: italic;
-  max-width: 22ch;
-  margin: 0;
-}
-
-.lockBody {
-  margin: 0;
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--ink-soft);
-  max-width: 30ch;
-}
-
-.lockChip {
-  font-family: var(--mono);
-  font-size: 10px;
-  margin-top: 4px;
-  padding: 4px 10px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  letter-spacing: 0.1em;
+.igPlaceholder {
+  width: 100%;
+  height: 100%;
 }
 
 /*
@@ -365,10 +318,6 @@
 
   .footer {
     padding: 10px 18px;
-  }
-
-  .lockWrap {
-    min-height: 280px;
   }
 
   .timelineRole {

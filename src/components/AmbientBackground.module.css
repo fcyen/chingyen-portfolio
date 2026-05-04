@@ -90,35 +90,43 @@
   to   { transform: translate3d(-240px, -240px, 0); }
 }
 
-/* ---- Explorer: slow gradient hue rotation + grain ---- */
+/* ---- Explorer: static dark forest green + grass-blade texture ---- */
 .explorer {
-  background: linear-gradient(
-    135deg,
-    oklch(0.32 0.07 230) 0%,
-    oklch(0.22 0.05 260) 50%,
-    oklch(0.18 0.04 290) 100%
+  background: radial-gradient(
+    ellipse at 40% 55%,
+    oklch(0.24 0.11 143) 0%,
+    oklch(0.16 0.09 148) 45%,
+    oklch(0.09 0.05 152) 100%
   );
-  animation: explorerHue 40s linear infinite;
 }
 
-.explorerGrain {
+/*
+ * SVG turbulence with a low x-frequency and moderate y-frequency produces
+ * tall, narrow vertical streaks that read as grass blades.
+ */
+.explorerGrass {
+  position: absolute;
+  inset: -15%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='600'><filter id='grass'><feTurbulence type='turbulence' baseFrequency='0.012 0.058' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04  0 0 0 0 0.18  0 0 0 0 0.04  0 0 0 0.65 0'/></filter><rect width='100%25' height='100%25' filter='url(%23grass)'/></svg>");
+  background-size: 400px 600px;
+  mix-blend-mode: overlay;
+  opacity: 0.75;
+}
+
+.explorerVignette {
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.3' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23g)' opacity='0.22'/></svg>");
-  mix-blend-mode: overlay;
-  opacity: 0.4;
-}
-
-@keyframes explorerHue {
-  from { filter: hue-rotate(0deg); }
-  to   { filter: hue-rotate(360deg); }
+  background: radial-gradient(
+    ellipse at center,
+    transparent 30%,
+    oklch(0.05 0.04 150 / 0.75) 100%
+  );
 }
 
 /* prefers-reduced-motion: kill the canvas + keyframes; static gradients only. */
 @media (prefers-reduced-motion: reduce) {
   .matrixCanvas { display: none; }
-  .crafterNoise,
-  .explorer { animation: none; }
+  .crafterNoise { animation: none; }
 }
 
 /*
@@ -130,6 +138,5 @@
 @media (max-width: 1100px) {
   .matrixCanvas { display: none; }
   .builderGrid { display: none; }
-  .crafterNoise,
-  .explorer { animation: none; }
+  .crafterNoise { animation: none; }
 }
