@@ -15,10 +15,10 @@ export const LaptopIcon = ({ scale = 4 }: WeaponIconProps) => (
     rows={[
       "............",
       "..########..",
-      "..#kkkkkk#..",
-      "..#kkkkkk#..",
-      "..#kkkkkk#..",
-      "..#kkkkkk#..",
+      "..#bbbbbb#..",
+      "..#bbbbbb#..",
+      "..#bbbbbb#..",
+      "..#bbbbbb#..",
       "..########..",
       ".##########.",
       "############",
@@ -51,15 +51,14 @@ export const CameraIcon = ({ scale = 4 }: WeaponIconProps) => (
     scale={scale}
     color="var(--ink)"
     rows={[
-      "....####....",
-      "############",
-      "############",
-      "###k####k###",
-      "###kk##kk###",
-      "###k####k###",
-      "############",
-      "############",
-      "############",
+      "...gggg...",
+      "g##ggggggg",
+      "gggggggggg",
+      "ggg####ggg",
+      "ggg####ggg",
+      "ggg####ggg",
+      "gggggggggg",
+      "gggggggggg",
       "............",
     ]}
   />

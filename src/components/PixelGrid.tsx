@@ -10,6 +10,8 @@ import type { CSSProperties, ReactElement } from "react";
  *   "o"     — var(--accent)
  *   "l"     — light cream (oklch(0.85 0.02 80))
  *   "y"     — sticky-note yellow (oklch(0.85 0.10 90))
+ *   "b"     — screen blue
+ *   "g"     — lens green
  *
  * Ported from design-reference/project/src/icons.jsx.
  */
@@ -26,6 +28,8 @@ const CHAR_COLORS: Record<string, string> = {
   o: "var(--accent)",
   l: "oklch(0.85 0.02 80)",
   y: "oklch(0.85 0.10 90)",
+  b: "oklch(0.72 0.12 220)",
+  g: "oklch(0.72 0.12 155)",
 };
 
 export default function PixelGrid({
