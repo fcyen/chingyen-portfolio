@@ -399,9 +399,6 @@ export default function KasihLinkPhase1() {
 
       <footer className={styles.footer}>
         <span className={styles.footerName}>Ching Yen</span>
-        <span className={styles.footerNext}>
-          Next: Phase 2 — Rethinking the product scope →
-        </span>
       </footer>
     </article>
   );

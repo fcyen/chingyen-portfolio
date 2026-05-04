@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowR, ArrowSE, LockIcon } from "@/components/icons";
+import { ArrowR, LockIcon } from "@/components/icons";
 import type { Persona } from "@/lib/persona";
 import {
   BUILDER_TIMELINE,
@@ -121,9 +121,6 @@ function CrafterBody() {
           );
         })}
       </div>
-      <a href="#" className={`arrow-link ${styles.postsAll}`}>
-        all case studies <ArrowSE />
-      </a>
     </div>
   );
 }

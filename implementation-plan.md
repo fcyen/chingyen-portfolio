@@ -149,13 +149,10 @@ Build-time RSS → JSON → bundled.
 
 Crafter post list links into real pages.
 
-- [ ] Install `@mdx-js/rollup`, configure Vite plugin
-- [ ] `posts/<slug>.mdx` with frontmatter (title, tag, readTime, date)
-- [ ] `src/lib/posts.ts` — load all MDX via `import.meta.glob`, expose typed list
-- [ ] `routes/Work/[slug].tsx` — generic post layout (own header, no character-select chrome)
-- [ ] Wire Crafter post list to use real `<Link to={`/work/${slug}`}>`
-- [ ] One sample post in repo so the route is testable
+- [x] Wire Crafter post list to use real `<Link to={`/work/${slug}`}>`
+- [x] One sample post in repo (KasihLink Phase 1) — bespoke page under `routes/projects/`, dispatched by `WorkPost` on slug
 - [ ] Update 404 page to be on-brand
+- [ ] MDX pipeline (deferred — see Stage 10): Install `@mdx-js/rollup`, configure Vite plugin, `posts/<slug>.mdx` with frontmatter, `src/lib/posts.ts` via `import.meta.glob`
 
 **Done when**: clicking a post in the Crafter view navigates to a working post page (or external link).
 
