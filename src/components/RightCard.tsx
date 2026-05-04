@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowR } from "@/components/icons";
@@ -5,21 +6,10 @@ import type { Persona } from "@/lib/persona";
 import {
   BUILDER_TIMELINE,
   CRAFTER_POSTS,
-  EXPLORER_PHOTOS,
   RIGHT_CARD_META,
 } from "@/lib/personaContent";
-import instagramData from "@/data/instagram.json";
+import instagramPosts from "@/data/instagram-posts.json";
 import styles from "./RightCard.module.css";
-
-type IGPost = {
-  id: string;
-  media_type: "IMAGE" | "CAROUSEL_ALBUM" | "VIDEO";
-  media_url: string;
-  thumbnail_url?: string;
-  permalink: string;
-  caption?: string;
-  timestamp: string;
-};
 
 /*
  * RightCard — the right-column panel of the character-select stage.
@@ -30,7 +20,7 @@ type IGPost = {
  * Body subcomponents:
  *   - BuilderBody:  timeline with diamond markers
  *   - CrafterBody:  list of posts (links inert until Stage 7)
- *   - ExplorerBody: blurred 3×3 photo grid behind a locked overlay
+ *   - ExplorerBody: curated Instagram post embeds via embed.js
  */
 
 export default function RightCard({ persona }: { persona: Persona }) {
@@ -136,17 +126,29 @@ function CrafterBody() {
   );
 }
 
+type InstagramWindow = Window & { instgrm?: { Embeds: { process: () => void } } };
+
 function ExplorerBody() {
-  const posts = (instagramData as { username: string; posts: IGPost[] }).posts;
-  const username = instagramData.username;
-  const hasPosts = posts.length > 0;
+  const { username, posts } = instagramPosts;
+
+  useEffect(() => {
+    const w = window as InstagramWindow;
+    if (w.instgrm) {
+      w.instgrm.Embeds.process();
+      return;
+    }
+    if (!document.querySelector('script[src="https://www.instagram.com/embed.js"]')) {
+      const s = document.createElement("script");
+      s.src = "https://www.instagram.com/embed.js";
+      s.async = true;
+      document.body.appendChild(s);
+    }
+  }, []);
 
   return (
     <div>
       <div className={styles.igHead}>
-        <span className={`mono ${styles.bodyEyebrow}`}>
-          // @{username}
-        </span>
+        <span className={`mono ${styles.bodyEyebrow}`}>// @{username}</span>
         <a
           href={`https://www.instagram.com/${username}/`}
           target="_blank"
@@ -157,58 +159,17 @@ function ExplorerBody() {
         </a>
       </div>
 
-      <div className={styles.igGrid}>
-        {hasPosts
-          ? posts.map((post) => {
-              const src =
-                post.media_type === "VIDEO"
-                  ? (post.thumbnail_url ?? post.media_url)
-                  : post.media_url;
-              return (
-                <a
-                  key={post.id}
-                  href={post.permalink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.igPost}
-                >
-                  <img
-                    src={src}
-                    alt={post.caption ?? ""}
-                    className={styles.igImg}
-                    loading="lazy"
-                  />
-                  {post.caption && (
-                    <div className={styles.igCaption}>
-                      <span>{post.caption.slice(0, 80)}</span>
-                    </div>
-                  )}
-                </a>
-              );
-            })
-          : EXPLORER_PHOTOS.map((photo, i) => (
-              <a
-                key={photo.caption}
-                href={`https://www.instagram.com/${username}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${styles.igPost} ${styles.igPostPlaceholder}`}
-                style={{
-                  background: `linear-gradient(${(i * 37) % 360}deg, ${photo.palette[0]}, ${photo.palette[1]})`,
-                }}
-              >
-                <div className={styles.igCaption}>
-                  <span>{photo.caption}</span>
-                </div>
-              </a>
-            ))}
+      <div className={styles.igEmbedList}>
+        {posts.map((url) => (
+          <blockquote
+            key={url}
+            className="instagram-media"
+            data-instgrm-captioned
+            data-instgrm-permalink={url}
+            data-instgrm-version="14"
+          />
+        ))}
       </div>
-
-      {!hasPosts && (
-        <p className={`mono ${styles.igFeedNote}`}>
-          // set INSTAGRAM_TOKEN in Netlify to load live feed
-        </p>
-      )}
     </div>
   );
 }
