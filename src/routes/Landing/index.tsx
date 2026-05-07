@@ -82,10 +82,11 @@ function DesktopLanding() {
           Hi, I'm <em>Ching Yen.</em>
         </h1>
         <p className={styles.heroBlurb}>
-          A Singapore-based engineer, designer, and photographer. I build
-          thoughtful interfaces, prototype with AI, and chase light in
-          unfamiliar places. Hover a character to peek at what they do — click
-          to step into their world.
+          A software engineer who designs as much as she ships. I've spent the
+          last few years at GoodNotes and Zendesk building thoughtful
+          interfaces and data pipelines that turn raw data into actionable
+          insights. When I'm not in front of a screen, you'll find me outdoors
+          with my camera.
         </p>
         <div className={styles.socials}>
           {SOCIALS.map((s) => (
@@ -246,9 +247,10 @@ function MobileLanding() {
         Hi, I'm <em>Ching Yen.</em>
       </h1>
       <p className={styles.mHeroBlurb}>
-        A Singapore-based engineer, designer, and photographer. I build
-        thoughtful interfaces, prototype with AI, and chase light in unfamiliar
-        places.
+        A software engineer who designs as much as she ships. I've spent the
+        last few years at GoodNotes and Zendesk building thoughtful interfaces
+        and data pipelines that turn raw data into actionable insights. When
+        I'm not in front of a screen, you'll find me outdoors with my camera.
       </p>
       <p className={styles.mHeroHint}>
         Tap a character to peek — tap again to enter.
