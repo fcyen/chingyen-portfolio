@@ -211,13 +211,23 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 8px 14px;
   font-size: 11px;
-  color: var(--ink-soft);
+  color: var(--ink);
   text-decoration: none;
-  transition: color 0.2s ease;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px -8px rgba(0, 0, 0, 0.35);
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+    transform 0.2s ease;
 }
 .homeLink:hover {
-  color: var(--ink);
+  background: var(--panel-solid);
+  border-color: var(--ink-soft);
+  transform: translateY(-1px);
 }
 .homeLink span[aria-hidden] {
   display: inline-block;
