@@ -132,10 +132,6 @@ function CharacterCard({
   onSelect,
 }: CardProps) {
   const dimmed = anyHovered && !isActive;
-  // image height ~74% of card height; width via aspect
-  const imgH = 540 * 0.74;
-  const imgW = imgH * persona.aspect;
-
   const accentVar = { "--accent": persona.accent } as CSSProperties;
 
   return (
@@ -159,8 +155,7 @@ function CharacterCard({
       <img
         src={persona.img}
         className={styles.charImg}
-        width={imgW}
-        height={imgH}
+        style={{ aspectRatio: persona.aspect }}
         alt=""
       />
 
@@ -209,5 +204,4 @@ const SOCIALS = [
   { label: "LinkedIn", sym: "in", href: "#" },
   { label: "GitHub", sym: "⌥", href: "#" },
   { label: "Email", sym: "@", href: "#" },
-  { label: "Substack", sym: "§", href: "#" },
 ];

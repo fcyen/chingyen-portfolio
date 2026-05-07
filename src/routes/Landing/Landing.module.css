@@ -6,15 +6,16 @@
 
 .root {
   position: relative;
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   overflow: hidden;
   background: radial-gradient(ellipse at 50% 30%, #14213d 0%, #0a0f1f 70%);
   color: #e8e5dc;
   font-family: var(--sans);
-  padding: 36px 60px;
+  padding: 28px 60px 24px;
   display: flex;
   flex-direction: column;
+  gap: 18px;
 }
 
 .pixelGrid::before {
@@ -99,7 +100,7 @@
   position: relative;
   z-index: 4;
   text-align: center;
-  margin-top: 46px;
+  margin-top: 8px;
 }
 .heroEyebrow {
   font-family: var(--mono);
@@ -169,14 +170,16 @@
   justify-content: center;
   align-items: flex-start;
   gap: 40px;
-  margin-top: 56px;
+  margin-top: 8px;
   flex: 1;
+  min-height: 0;
 }
 
 .card {
   position: relative;
-  width: 340px;
-  height: 540px;
+  width: clamp(240px, 24vw, 340px);
+  height: 100%;
+  max-height: 540px;
   cursor: pointer;
   background: transparent;
   border: 0;
@@ -220,6 +223,8 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  height: 74%;
+  width: auto;
   image-rendering: pixelated;
   filter: drop-shadow(0 6px 0 rgba(0, 0, 0, 0.18));
   display: block;
@@ -324,9 +329,9 @@
 .tagPill {
   position: absolute;
   font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  padding: 6px 10px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding: 7px 12px;
   border-radius: 2px;
   white-space: nowrap;
   background: rgba(10, 15, 31, 0.9);
@@ -351,7 +356,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-top: 24px;
+  margin-top: 4px;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.12em;
@@ -457,10 +462,6 @@
   .cards {
     gap: 24px;
   }
-  .card {
-    width: 280px;
-    height: 460px;
-  }
   .cardName {
     font-size: 26px;
   }
@@ -468,6 +469,9 @@
 
 @media (max-width: 900px) {
   .root {
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
     padding: 24px 20px 28px;
   }
   .heroTitle {
@@ -480,11 +484,12 @@
     flex-direction: column;
     align-items: center;
     gap: 16px;
-    margin-top: 36px;
+    margin-top: 24px;
   }
   .card {
     width: 320px;
     height: 480px;
+    max-height: none;
   }
   .topBar {
     font-size: 10px;
