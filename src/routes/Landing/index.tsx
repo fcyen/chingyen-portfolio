@@ -244,7 +244,7 @@ function MobileLanding() {
         <span className={styles.blink}>_</span>
       </div>
       <h1 className={styles.mHeroTitle}>
-        Hi, I'm <em>Ching Yen.</em>
+        I'm <em>Ching Yen.</em>
       </h1>
       <p className={styles.mHeroBlurb}>
         A software engineer who designs as much as she ships. I've spent the
