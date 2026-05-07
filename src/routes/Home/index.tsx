@@ -1,5 +1,5 @@
 import { useEffect, type MouseEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Frame from "@/components/Frame";
 import AmbientBackground from "@/components/AmbientBackground";
@@ -136,6 +136,9 @@ export default function Home() {
     <>
       <AmbientBackground persona={persona} />
       <Frame />
+      <Link to="/" className={`mono uppr ${styles.homeLink}`}>
+        <span aria-hidden="true">←</span> home
+      </Link>
       <main className={styles.stage}>
         <section className={styles.center}>
           <div className={styles.characterWrap}>
