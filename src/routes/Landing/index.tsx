@@ -65,7 +65,7 @@ function DesktopLanding() {
         <div className={styles.left}>
           <span className={styles.statusDot} />
           <span>
-            chingyen.portfolio <span className={styles.divider}>///</span> v0.0.2
+            chingyen.portfolio <span className={styles.divider}>///</span> v0.3.0
           </span>
         </div>
         <div className={styles.based}>
@@ -235,7 +235,7 @@ function MobileLanding() {
       <div className={styles.mTopBar}>
         <span className={styles.statusDot} />
         <span>
-          chingyen.portfolio <span className={styles.divider}>///</span> v0.0.2
+          chingyen.portfolio <span className={styles.divider}>///</span> v0.3.0
         </span>
       </div>
 

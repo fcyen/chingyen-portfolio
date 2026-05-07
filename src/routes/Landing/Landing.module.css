@@ -106,7 +106,7 @@
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.22em;
-  color: #ff7a45;
+  color: #b47aff;
   margin-bottom: 14px;
 }
 .heroTitle {
@@ -118,7 +118,7 @@
 }
 .heroTitle em {
   font-style: italic;
-  color: #e8c547;
+  color: #b47aff;
 }
 .heroBlurb {
   max-width: 640px;
@@ -502,7 +502,7 @@
   font-family: var(--mono);
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: #ff7a45;
+  color: #b47aff;
   margin-bottom: 8px;
 }
 .mHeroTitle {
@@ -514,7 +514,7 @@
 }
 .mHeroTitle em {
   font-style: italic;
-  color: #e8c547;
+  color: #b47aff;
 }
 .mHeroBlurb {
   font-size: 13px;

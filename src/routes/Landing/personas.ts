@@ -31,9 +31,9 @@ export const LANDING_PERSONAS: readonly LandingPersona[] = [
     italic: "Builder",
     section: "BUILD/01",
     sectionLabel: "WORK",
-    accent: "#FF7A45",
-    accentSoft: "rgba(255,122,69,0.14)",
-    accentGlow: "rgba(255,122,69,0.28)",
+    accent: "#4FA3FF",
+    accentSoft: "rgba(79,163,255,0.14)",
+    accentGlow: "rgba(79,163,255,0.28)",
     img: "/assets/character-builder.png",
     aspect: 550 / 1262,
     blurb:
