@@ -39,11 +39,11 @@ export const LANDING_PERSONAS: readonly LandingPersona[] = [
     blurb:
       "engineer building scalable frontends and bridging tech with business goals.",
     tags: [
-      { label: "Rapid AI prototyping", x: 4, y: 18, side: "left" },
-      { label: "Frontend architecture", x: 96, y: 24, side: "right" },
-      { label: "Design systems", x: 4, y: 42, side: "left" },
+      { label: "Full-stack engineering", x: 4, y: 18, side: "left" },
+      { label: "Production observability", x: 96, y: 24, side: "right" },
+      { label: "Cross-platform architecture", x: 4, y: 42, side: "left" },
       { label: "TypeScript · React", x: 96, y: 48, side: "right" },
-      { label: "iOS · Swift", x: 4, y: 66, side: "left" },
+      { label: "Rapid AI prototyping", x: 4, y: 66, side: "left" },
     ],
   },
   {
@@ -64,8 +64,7 @@ export const LANDING_PERSONAS: readonly LandingPersona[] = [
       { label: "UX research", x: 4, y: 20, side: "left" },
       { label: "Design thinking", x: 96, y: 26, side: "right" },
       { label: "Interaction design", x: 4, y: 44, side: "left" },
-      { label: "Figma · Code", x: 96, y: 50, side: "right" },
-      { label: "Working prototypes", x: 4, y: 68, side: "left" },
+      { label: "Working prototypes", x: 96, y: 50, side: "right" },
     ],
   },
   {
@@ -84,10 +83,9 @@ export const LANDING_PERSONAS: readonly LandingPersona[] = [
       "photographer who chases the golden hour in unfamiliar lands.",
     tags: [
       { label: "Landscape", x: 4, y: 22, side: "left" },
-      { label: "Sony A7C", x: 96, y: 28, side: "right" },
-      { label: "Golden hour", x: 4, y: 46, side: "left" },
-      { label: "Travel photography", x: 96, y: 52, side: "right" },
-      { label: "10+ countries", x: 4, y: 70, side: "left" },
+      { label: "Street", x: 96, y: 28, side: "right" },
+      { label: "Portrait", x: 4, y: 46, side: "left" },
+      { label: "Travel", x: 96, y: 52, side: "right" },
     ],
   },
 ] as const;
