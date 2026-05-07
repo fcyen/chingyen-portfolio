@@ -40,3 +40,5 @@ vite.config.d.ts
 
 # Netlify
 .netlify
+
+codex-reference/
