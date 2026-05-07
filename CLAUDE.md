@@ -4,7 +4,7 @@ Guidance for Claude Code (and future contributors) working in this repo.
 
 ## What this is
 
-A personal portfolio website for **Ching Yen**, built from a design handoff from Claude Design. The site is a single-screen "character select" stage (video-game menu, editorial/streetwear styling) with three personas — Builder (engineer), Crafter (designer), Explorer (photographer, locked) — plus dedicated routes for blog/case-study posts and future bespoke project pages.
+A personal portfolio website for **Ching Yen**, built from a design handoff from Claude Design. The entry screen at `/` is a Landing "at-a-glance" character-select with three personas — Builder (engineer), Crafter (designer), Explorer (photographer, locked). Clicking a card deep-links into `/select?p=<persona>`, the full character-select stage (video-game menu, editorial/streetwear styling). Dedicated routes exist for blog/case-study posts and bespoke project pages.
 
 ## Tech stack
 
@@ -21,11 +21,13 @@ A personal portfolio website for **Ching Yen**, built from a design handoff from
 ```
 src/
   main.tsx                 # bootstraps React, BrowserRouter, font/CSS imports
-  App.tsx                  # route table: /, /work/:slug, *
+  App.tsx                  # route table: /, /select, /work/:slug, *
   routes/
-    Home/index.tsx         # the character-select stage (owns frame, persona state, full-bleed bg)
+    Landing/index.tsx      # entry "at-a-glance" screen — three character cards, dark video-game palette, links into /select
+    Landing/personas.ts    # landing-only persona copy (tags, accents, blurbs); references @/lib/persona for ids
+    Home/index.tsx         # the character-select stage (owns frame, persona state, full-bleed bg) — mounted at /select
     Work/WorkPost.tsx      # case-study template (rendered for /work/:slug)
-    projects/              # future bespoke pages (each free to define its own layout)
+    projects/              # bespoke project pages (e.g. KasihLinkPhase1.tsx); each free to define its own layout
     NotFound.tsx
   components/              # shared primitives + Home cells
     AmbientBackground.*    # full-bleed bg, one skin per persona, 24fps cap
