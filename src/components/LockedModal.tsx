@@ -216,7 +216,7 @@ function FormState({
         Level locked &mdash; <em>stay tuned!</em>
       </h2>
       <p className={styles.body}>
-        Thanks for your interest in the photography wing! It&rsquo;s still under construction, but I&rsquo;d love to keep you in the loop.
+        Thanks for your interest in the photography wing! I&rsquo;m still working on it, but I&rsquo;d love to keep you in the loop and hear your thoughts about this site!
       </p>
       <form
         name={FORM_NAME}
