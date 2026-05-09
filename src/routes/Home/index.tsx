@@ -1,10 +1,11 @@
-import { useEffect, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import Frame from "@/components/Frame";
 import AmbientBackground from "@/components/AmbientBackground";
 import CharacterStage from "@/components/CharacterStage";
 import HeroCard from "@/components/HeroCard";
+import LockedModal from "@/components/LockedModal";
 import PersonaTagCard from "@/components/PersonaTagCard";
 import RightCard from "@/components/RightCard";
 import SubstackWidget from "@/components/SubstackWidget";
@@ -33,6 +34,8 @@ const DETAILS_ANCHOR_ID = "home-details";
 export default function Home() {
   const [searchParams, setSearchParams] = useSearchParams();
   const persona: Persona = parsePersonaParam(searchParams.get("p"));
+  const [lockedOpen, setLockedOpen] = useState(false);
+  const lockedTriggerRef = useRef<HTMLElement | null>(null);
 
   // Set persona via the URL — keeps the page shareable. `replace: true` so
   // persona switches don't pollute browser history. We always write the
@@ -145,7 +148,14 @@ export default function Home() {
             <CharacterStage persona={persona} />
           </div>
           <div className={styles.selector}>
-            <WeaponSelector persona={persona} onPersonaChange={setPersona} />
+            <WeaponSelector
+              persona={persona}
+              onPersonaChange={setPersona}
+              onLockedClick={(_, trigger) => {
+                lockedTriggerRef.current = trigger;
+                setLockedOpen(true);
+              }}
+            />
           </div>
         </section>
 
@@ -171,6 +181,12 @@ export default function Home() {
 
         <div className={styles.widget}>{widget}</div>
       </main>
+
+      <LockedModal
+        open={lockedOpen}
+        onClose={() => setLockedOpen(false)}
+        returnFocusRef={lockedTriggerRef}
+      />
     </>
   );
 }

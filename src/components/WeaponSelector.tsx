@@ -21,9 +21,19 @@ const ICONS: Record<Persona, (props: { scale?: number }) => ReactElement> = {
 type Props = {
   persona: Persona;
   onPersonaChange: (next: Persona) => void;
+  /**
+   * Fired when the user clicks a locked tile. The trigger element is passed
+   * back so the parent can restore focus after dismissing whatever follow-up
+   * UI it shows (e.g. LockedModal).
+   */
+  onLockedClick?: (key: Persona, trigger: HTMLButtonElement) => void;
 };
 
-export default function WeaponSelector({ persona, onPersonaChange }: Props) {
+export default function WeaponSelector({
+  persona,
+  onPersonaChange,
+  onLockedClick,
+}: Props) {
   return (
     <div className={styles.root}>
       <span className={`mono uppr ${styles.label}`}>// choose your weapon</span>
@@ -36,6 +46,7 @@ export default function WeaponSelector({ persona, onPersonaChange }: Props) {
             index={i}
             active={p.key === persona}
             onSelect={onPersonaChange}
+            onLockedClick={onLockedClick}
           />
         ))}
       </div>
@@ -62,11 +73,13 @@ function Tile({
   index,
   active,
   onSelect,
+  onLockedClick,
 }: {
   def: PersonaDef;
   index: number;
   active: boolean;
   onSelect: (next: Persona) => void;
+  onLockedClick?: (key: Persona, trigger: HTMLButtonElement) => void;
 }) {
   const Icon = ICONS[def.key];
   const locked = !!def.locked;
@@ -78,8 +91,12 @@ function Tile({
   return (
     <button
       type="button"
-      onClick={() => {
-        if (!locked) onSelect(def.key);
+      onClick={(e) => {
+        if (locked) {
+          onLockedClick?.(def.key, e.currentTarget);
+          return;
+        }
+        onSelect(def.key);
       }}
       aria-pressed={active}
       aria-disabled={locked}

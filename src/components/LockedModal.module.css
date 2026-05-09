@@ -1,0 +1,239 @@
+/*
+ * LockedModal — overlay shown when the user clicks the locked Explorer
+ * persona. Matches the dark video-game palette used on Landing rather than
+ * the warm tokens used on Home, so it sits cleanly on either surface.
+ */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 15, 31, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.2s ease;
+}
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background: #0a0f1f;
+  border: 1px solid rgba(125, 209, 129, 0.45);
+  color: #e8e5dc;
+  font-family: var(--sans);
+  padding: 32px 28px 26px;
+  box-shadow:
+    0 30px 80px -30px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(125, 209, 129, 0.08) inset;
+  animation: pop 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 0;
+  color: rgba(232, 229, 220, 0.55);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+.closeBtn:hover,
+.closeBtn:focus-visible {
+  color: #e8e5dc;
+  outline: none;
+}
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: #7dd181;
+  margin-bottom: 10px;
+}
+.eyebrowError {
+  color: #ff8a7a;
+}
+
+.title {
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.title em {
+  font-style: italic;
+  color: #7dd181;
+}
+
+.body {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(232, 229, 220, 0.7);
+  margin: 0 0 18px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fieldLabel {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  color: rgba(232, 229, 220, 0.5);
+}
+
+.input,
+.textarea {
+  width: 100%;
+  background: rgba(232, 229, 220, 0.04);
+  border: 1px solid rgba(232, 229, 220, 0.16);
+  color: #e8e5dc;
+  padding: 10px 12px;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 2px;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(232, 229, 220, 0.3);
+}
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #7dd181;
+  background: rgba(125, 209, 129, 0.06);
+}
+.textarea {
+  resize: vertical;
+  min-height: 64px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+}
+.input:disabled,
+.textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submit {
+  margin-top: 6px;
+  padding: 11px 14px;
+  background: #7dd181;
+  color: #0a0f1f;
+  border: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+.submit:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(125, 209, 129, 0.18);
+}
+.submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitGhost {
+  padding: 11px 14px;
+  background: transparent;
+  color: rgba(232, 229, 220, 0.7);
+  border: 1px solid rgba(232, 229, 220, 0.18);
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.submitGhost:hover {
+  color: #e8e5dc;
+  border-color: rgba(232, 229, 220, 0.4);
+}
+
+.followup {
+  display: flex;
+  flex-direction: column;
+}
+
+.errorActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+.errorActions .submit,
+.errorActions .submitGhost {
+  flex: 1;
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  height: 0;
+  overflow: hidden;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .dialog {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog {
+    padding: 26px 20px 22px;
+  }
+  .title {
+    font-size: 24px;
+  }
+}

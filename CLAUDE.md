@@ -38,6 +38,7 @@ src/
     RightCard.*            # right panel (½ the page width), persona-dependent body
     SubstackWidget.*       # bottom-centre for builder (mocked feed in Stage 5)
     PersonaTagCard.*       # bottom-centre for crafter/explorer (stat block + quote)
+    LockedModal.*          # waitlist modal shown when a locked persona is clicked (Netlify Forms)
     PixelGrid.tsx, icons.tsx  # pixel-art primitive + UI glyphs
   styles/
     tokens.css             # design tokens — colors, fonts, shadows
@@ -88,7 +89,8 @@ The chat transcript at `design-reference/chats/chat1.md` shows the user/designer
 - **Substack widget is a feed, not a signup.** RSS fetched at build time → `src/data/substack.json` → bundled.
 - **Mobile (≤768px) is a dedicated stacked layout**, not just a reflow. Animated bg disabled on mobile (static gradient instead).
 - **`prefers-reduced-motion` is required**, not optional. Disables the bg canvas, the floaty character animation, and the framer-motion transitions.
-- **Locked persona (Explorer)** must be skipped by keyboard nav (`3` and `←/→`) and rejected by clicks. Don't regress this.
+- **Locked persona (Explorer)** must be skipped by keyboard nav (`3` and `←/→` on Home) — `stepPersona` and `personaFromNumberKey` enforce this. Clicks on the locked tile/card open `LockedModal` (waitlist + leave-a-message form). The lock is gated on `import.meta.env.DEV`: locked in production builds, unlocked when running `npm run dev` so the section can be iterated on. Don't regress this.
+- **Waitlist storage** is **Netlify Forms** (`explorer-waitlist`). The schema lives as a hidden static `<form data-netlify="true">` in `index.html` so Netlify's build-time scan registers it; `LockedModal` POSTs the same field set (`email`, `message`, `bot-field`, `form-name`) to `/`. Submissions appear in the Netlify dashboard — no third-party form service.
 - **All asset URLs and external links are placeholders** — the user will swap them in. Don't invent real URLs.
 - **Name is "Ching Yen"** (the prototype HTML uses this; the chat transcript said "Ching Yun" — the HTML wins).
 - **Column order differs from the prototype** (intentional). The original design put the intro card on the left, character stage in the centre, and work experience on the right. The live layout reverses columns 1 and 2: character stage left, intro/substack centre, work experience right. Column proportions are `1fr 1fr 2fr` (roughly ¼ / ¼ / ½) so the right panel dominates — the goal is to direct visitor attention toward the work experience content. Do not revert to the prototype's column order without asking.
