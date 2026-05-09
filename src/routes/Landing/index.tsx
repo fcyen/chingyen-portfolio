@@ -1,5 +1,7 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
+import LockedModal from "@/components/LockedModal";
+import { isLocked } from "@/lib/persona";
 import { LANDING_PERSONAS, type LandingPersona } from "./personas";
 import styles from "./Landing.module.css";
 
@@ -33,6 +35,17 @@ function useIsMobile() {
 function DesktopLanding() {
   const navigate = useNavigate();
   const [hov, setHov] = useState<number | null>(null);
+  const [lockedOpen, setLockedOpen] = useState(false);
+  const lockedTriggerRef = useRef<HTMLElement | null>(null);
+
+  const handleSelect = (p: LandingPersona, trigger: HTMLElement | null) => {
+    if (isLocked(p.id)) {
+      lockedTriggerRef.current = trigger;
+      setLockedOpen(true);
+      return;
+    }
+    navigate(`/select?p=${p.id}`);
+  };
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -48,7 +61,13 @@ function DesktopLanding() {
       const idx = ["1", "2", "3"].indexOf(e.key);
       if (idx === -1) return;
       const p = LANDING_PERSONAS[idx];
-      if (p) navigate(`/select?p=${p.id}`);
+      if (!p) return;
+      if (isLocked(p.id)) {
+        lockedTriggerRef.current = null;
+        setLockedOpen(true);
+        return;
+      }
+      navigate(`/select?p=${p.id}`);
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
@@ -111,7 +130,7 @@ function DesktopLanding() {
             isActive={hov === i}
             anyHovered={hov !== null}
             onHover={() => setHov(i)}
-            onSelect={() => navigate(`/select?p=${p.id}`)}
+            onSelect={(el) => handleSelect(p, el)}
           />
         ))}
       </div>
@@ -126,6 +145,12 @@ function DesktopLanding() {
         </span>
         <span>to jump</span>
       </div>
+
+      <LockedModal
+        open={lockedOpen}
+        onClose={() => setLockedOpen(false)}
+        returnFocusRef={lockedTriggerRef}
+      />
     </div>
   );
 }
@@ -135,7 +160,7 @@ type CardProps = {
   isActive: boolean;
   anyHovered: boolean;
   onHover: () => void;
-  onSelect: () => void;
+  onSelect: (trigger: HTMLElement | null) => void;
 };
 
 function CharacterCard({
@@ -156,7 +181,7 @@ function CharacterCard({
       }`}
       style={accentVar}
       onMouseEnter={onHover}
-      onClick={onSelect}
+      onClick={(e) => onSelect(e.currentTarget)}
       aria-label={`${persona.name} ${persona.italic} — ${persona.sectionLabel}`}
     >
       <div
@@ -218,9 +243,22 @@ function CharacterCard({
 function MobileLanding() {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState<string | null>(null);
+  const [lockedOpen, setLockedOpen] = useState(false);
+  const lockedTriggerRef = useRef<HTMLElement | null>(null);
 
-  const handleTap = (p: LandingPersona) => {
-    if (expanded === p.id) navigate(`/select?p=${p.id}`);
+  const handleEnter = (p: LandingPersona, trigger: HTMLElement | null) => {
+    if (isLocked(p.id)) {
+      lockedTriggerRef.current = trigger;
+      setLockedOpen(true);
+      return;
+    }
+    navigate(`/select?p=${p.id}`);
+  };
+
+  const handleTap = (p: LandingPersona, trigger: HTMLElement | null) => {
+    // First tap always expands; only the second tap (or the explicit Enter
+    // button) navigates / opens the locked modal.
+    if (expanded === p.id) handleEnter(p, trigger);
     else setExpanded(p.id);
   };
 
@@ -282,7 +320,7 @@ function MobileLanding() {
               <button
                 type="button"
                 className={styles.mCardRow}
-                onClick={() => handleTap(p)}
+                onClick={(e) => handleTap(p, e.currentTarget)}
               >
                 <div
                   className={`${styles.mCharWrap} ${
@@ -326,7 +364,7 @@ function MobileLanding() {
                 <button
                   type="button"
                   className={styles.mEnterBtn}
-                  onClick={() => navigate(`/select?p=${p.id}`)}
+                  onClick={(e) => handleEnter(p, e.currentTarget)}
                 >
                   Enter {p.name} {p.italic} →
                 </button>
@@ -335,6 +373,12 @@ function MobileLanding() {
           );
         })}
       </div>
+
+      <LockedModal
+        open={lockedOpen}
+        onClose={() => setLockedOpen(false)}
+        returnFocusRef={lockedTriggerRef}
+      />
 
       <div className={styles.mFooter}>
         <div className={styles.mFooterLabel}>// ELSEWHERE</div>

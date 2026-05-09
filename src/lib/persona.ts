@@ -12,11 +12,15 @@ export type PersonaDef = {
   locked?: boolean;
 };
 
+// Explorer is locked in production builds and unlocked in `npm run dev`,
+// so we can keep iterating on the photography section without exposing it.
+const EXPLORER_LOCKED = !import.meta.env.DEV;
+
 export const PERSONAS: readonly PersonaDef[] = [
   { key: "builder", label: "the builder", weapon: "laptop" },
   { key: "crafter", label: "the crafter", weapon: "stickies" },
-  { key: "explorer", label: "the explorer", weapon: "camera" },
-] as const;
+  { key: "explorer", label: "the explorer", weapon: "camera", locked: EXPLORER_LOCKED },
+];
 
 export const DEFAULT_PERSONA: Persona = "builder";
 

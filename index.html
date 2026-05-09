@@ -8,6 +8,16 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      Static form for Netlify Forms detection. Netlify scans built HTML at deploy
+      time and registers any form with `data-netlify`. The React modal POSTs to
+      "/" with the same field names; this hidden copy is just the schema.
+    -->
+    <form name="explorer-waitlist" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+      <input name="bot-field" />
+    </form>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
