@@ -121,6 +121,16 @@ npm run lint         # eslint . --ext .ts,.tsx
 - **Substack feed**: source is `https://fcyen.substack.com/feed`. Refresh = Netlify build hook + scheduled daily ping (cron-job.org or GitHub Actions) — set up during stage 6.
 - **Analytics**: Cloudflare Web Analytics (free, privacy-friendly).
 
+## Versioning
+
+The site uses a three-part version number (e.g. `1.0.0`):
+
+- **Major** (`X._._ `): reserved for full redesigns or breaking structural changes.
+- **Minor** (`_.X._`): bump for every significant change — new sections, new features, persona additions, layout overhauls.
+- **Patch** (`_._.X`): bump for small changes — copy edits, color tweaks, minor style fixes, bug fixes.
+
+Keep the current version in `package.json` (`version` field). Update it as part of the same commit as the change.
+
 ## Open items
 
 Tracked in `implementation-plan.md` under "Open questions". Get answers before starting the affected stage.

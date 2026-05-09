@@ -71,7 +71,7 @@ export default function HeroCard({ persona }: { persona: Persona }) {
             <b>chingyen</b>
             <span className={styles.versionDim}>.portfolio</span>{" "}
             <span className={styles.versionDim}>///</span>{" "}
-            <span className={styles.versionDim}>v0.3.0</span>
+            <span className={styles.versionDim}>v{__APP_VERSION__}</span>
           </span>
           <span className={`ticker ${styles.based}`}>
             based: <b>Singapore</b>

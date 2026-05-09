@@ -65,7 +65,7 @@ function DesktopLanding() {
         <div className={styles.left}>
           <span className={styles.statusDot} />
           <span>
-            chingyen.portfolio <span className={styles.divider}>///</span> v0.3.0
+            chingyen.portfolio <span className={styles.divider}>///</span> v{__APP_VERSION__}
           </span>
         </div>
         <div className={styles.based}>
@@ -84,8 +84,7 @@ function DesktopLanding() {
         <p className={styles.heroBlurb}>
           A software engineer who designs as much as she ships. I've spent the
           last few years at GoodNotes and Zendesk building thoughtful
-          interfaces and data pipelines that turn raw data into actionable
-          insights. When I'm not in front of a screen, you'll find me outdoors
+          interfaces and automated solutions. When I'm not in front of a screen, you'll find me outdoors
           with my camera.
         </p>
         <div className={styles.socials}>
@@ -235,7 +234,7 @@ function MobileLanding() {
       <div className={styles.mTopBar}>
         <span className={styles.statusDot} />
         <span>
-          chingyen.portfolio <span className={styles.divider}>///</span> v0.3.0
+          chingyen.portfolio <span className={styles.divider}>///</span> v{__APP_VERSION__}
         </span>
       </div>
 
@@ -359,7 +358,7 @@ function MobileLanding() {
 }
 
 const SOCIALS = [
-  { label: "LinkedIn", sym: "in", href: "#" },
-  { label: "GitHub", sym: "⌥", href: "#" },
-  { label: "Email", sym: "@", href: "#" },
+  { label: "LinkedIn", sym: "in", href: "https://www.linkedin.com/in/foo-ching-yen/" },
+  { label: "GitHub", sym: "⌥", href: "https://github.com/fcyen/" },
+  { label: "Email", sym: "@", href: "mailto:chingyenfoo@gmail.com" },
 ];
