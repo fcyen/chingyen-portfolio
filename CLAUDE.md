@@ -12,7 +12,7 @@ A personal portfolio website for **Ching Yen**, built from a design handoff from
 - **Routing**: React Router v6
 - **Styling**: Plain CSS with CSS variables (`oklch` color space). No Tailwind.
 - **Animation**: framer-motion for component transitions; raw canvas + CSS keyframes for ambient backgrounds
-- **Content**: MDX for case-study posts (TBD if user goes this route)
+- **Content**: MDX for case-study posts
 - **Deploy**: Netlify (SPA redirects via `public/_redirects`)
 - **Fonts**: `@fontsource/instrument-serif`, `@fontsource/jetbrains-mono`, `@fontsource/inter`
 
@@ -36,7 +36,7 @@ src/
     CharacterStage.*       # left column, character art + annotations
     WeaponSelector.*       # three persona tiles + keyboard hints; flex child below CharacterStage
     RightCard.*            # right panel (½ the page width), persona-dependent body
-    SubstackWidget.*       # bottom-centre for builder (mocked feed in Stage 5)
+    SubstackWidget.*       # bottom-centre for builder (polling feed)
     PersonaTagCard.*       # bottom-centre for crafter/explorer (stat block + quote)
     LockedModal.*          # waitlist modal shown when a locked persona is clicked (Netlify Forms)
     PixelGrid.tsx, icons.tsx  # pixel-art primitive + UI glyphs
@@ -78,21 +78,17 @@ The original HTML/CSS/JS prototype lives in `design-reference/project/`:
 
 **Treat the prototype as a visual spec, not a code template.** Read it to understand dimensions, colors, layout rules, motion timings — then reimplement in React/TS with the structure laid out above. Don't copy the prototype's `Object.assign(window, ...)` or `<script type="text/babel">` patterns.
 
-The chat transcript at `design-reference/chats/chat1.md` shows the user/designer back-and-forth that produced the design.
-
 ## Key decisions (do not re-litigate without asking)
 
 - **Persona state is local to `routes/Home`**, not global. Other routes don't have personas.
 - **Body-level styles** (`overflow: hidden`, `data-persona`) are applied via `useEffect` on Home only, cleaned up on unmount, so other routes scroll normally.
 - **Full-bleed animated background**, three skins (one per persona), capped at 24fps, crossfade on persona switch. Sits behind `#app`, in front of nothing. The frame border stays as a foreground UI element.
 - **Persona tints** apply to the bg layer, not `body`. The original `body[data-persona]` cream/peach/sage tints are obsolete now that the bg is full-bleed.
-- **Substack widget is a feed, not a signup.** RSS fetched at build time → `src/data/substack.json` → bundled.
 - **Mobile (≤768px) is a dedicated stacked layout**, not just a reflow. Animated bg disabled on mobile (static gradient instead).
 - **`prefers-reduced-motion` is required**, not optional. Disables the bg canvas, the floaty character animation, and the framer-motion transitions.
 - **Locked persona (Explorer)** must be skipped by keyboard nav (`3` and `←/→` on Home) — `stepPersona` and `personaFromNumberKey` enforce this. Clicks on the locked tile/card open `LockedModal` (waitlist + leave-a-message form). The lock is gated on `import.meta.env.DEV`: locked in production builds, unlocked when running `npm run dev` so the section can be iterated on. Don't regress this.
 - **Waitlist storage** is **Netlify Forms** (`explorer-waitlist`). The schema lives as a hidden static `<form data-netlify="true">` in `index.html` so Netlify's build-time scan registers it; `LockedModal` POSTs the same field set (`email`, `message`, `bot-field`, `form-name`) to `/`. Submissions appear in the Netlify dashboard — no third-party form service.
 - **All asset URLs and external links are placeholders** — the user will swap them in. Don't invent real URLs.
-- **Name is "Ching Yen"** (the prototype HTML uses this; the chat transcript said "Ching Yun" — the HTML wins).
 - **Column order differs from the prototype** (intentional). The original design put the intro card on the left, character stage in the centre, and work experience on the right. The live layout reverses columns 1 and 2: character stage left, intro/substack centre, work experience right. Column proportions are `1fr 1fr 2fr` (roughly ¼ / ¼ / ½) so the right panel dominates — the goal is to direct visitor attention toward the work experience content. Do not revert to the prototype's column order without asking.
 
 ## Conventions
@@ -135,4 +131,4 @@ Keep the current version in `package.json` (`version` field). Update it as part 
 
 ## Open items
 
-Tracked in `implementation-plan.md` under "Open questions". Get answers before starting the affected stage.
+N/A
