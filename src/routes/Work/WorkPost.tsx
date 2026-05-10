@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import { useParams } from "react-router-dom";
 import KasihLinkPhase1 from "@/routes/projects/KasihLinkPhase1";
+import OCBCApp from "@/routes/projects/OCBCApp";
 import NotFound from "@/routes/NotFound";
 
 /*
@@ -10,6 +11,7 @@ import NotFound from "@/routes/NotFound";
  */
 const PROJECTS: Record<string, ComponentType> = {
   "kasih-link-phase-1": KasihLinkPhase1,
+  "ocbc-app": OCBCApp,
 };
 
 export default function WorkPost() {
