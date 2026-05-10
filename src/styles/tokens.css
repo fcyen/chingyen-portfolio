@@ -52,3 +52,14 @@ body[data-persona="builder"] {
   --panel: oklch(0.18 0.04 250 / 0.6);
   --panel-solid: oklch(0.16 0.04 250);
 }
+
+/*
+ * Explorer's meadow skin is bright and saturated, so the default near-black
+ * warm ink reads heavily on it. Step the ink down to a neutral dark grey
+ * (~#333 / #555 for soft) for a softer, more outdoorsy feel.
+ */
+body[data-persona="explorer"] {
+  --ink: oklch(0.32 0 0);
+  --ink-soft: oklch(0.50 0 0);
+  --line: oklch(0.32 0 0 / 0.20);
+}
