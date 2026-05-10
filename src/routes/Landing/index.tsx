@@ -103,7 +103,7 @@ function DesktopLanding() {
         <p className={styles.heroBlurb}>
           A software engineer who designs as much as she ships. I've spent the
           last few years at GoodNotes and Zendesk building thoughtful
-          interfaces and automated solutions. When I'm not in front of a screen, you'll find me outdoors
+          interfaces and AI solutions. When I'm not in front of a screen, you'll find me outdoors
           with my camera.
         </p>
         <div className={styles.socials}>
