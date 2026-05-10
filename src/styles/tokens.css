@@ -38,10 +38,11 @@ body {
 }
 
 /*
- * Builder + Explorer ride dark ambient skins → flip ink/line/bg-tint so any
- * element that uses these tokens (HeroCard text, WeaponSelector tiles, the
- * lock badge that swaps fg/bg on hover, etc.) stays readable. Crafter sits
- * on warm paper and keeps the default dark ink palette.
+ * Builder rides a dark ambient skin → flip ink/line/bg-tint so any element
+ * that uses these tokens (HeroCard text, WeaponSelector tiles, the lock
+ * badge that swaps fg/bg on hover, etc.) stays readable. Crafter and
+ * Explorer both sit on warm/light meadow paper and keep the default dark
+ * ink palette — so they don't override here.
  */
 body[data-persona="builder"] {
   --ink: oklch(0.96 0.01 220);
@@ -52,11 +53,13 @@ body[data-persona="builder"] {
   --panel-solid: oklch(0.16 0.04 250);
 }
 
+/*
+ * Explorer's meadow skin is bright and saturated, so the default near-black
+ * warm ink reads heavily on it. Step the ink down to a neutral dark grey
+ * (~#333 / #555 for soft) for a softer, more outdoorsy feel.
+ */
 body[data-persona="explorer"] {
-  --ink: oklch(0.96 0.01 220);
-  --ink-soft: oklch(0.78 0.02 220);
-  --line: oklch(0.96 0.01 220 / 0.22);
-  --bg-tint: oklch(0.18 0.05 240);
-  --panel: oklch(0.18 0.05 240 / 0.6);
-  --panel-solid: oklch(0.16 0.05 240);
+  --ink: oklch(0.32 0 0);
+  --ink-soft: oklch(0.50 0 0);
+  --line: oklch(0.32 0 0 / 0.20);
 }

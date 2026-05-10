@@ -90,27 +90,57 @@
   to   { transform: translate3d(-240px, -240px, 0); }
 }
 
-/* ---- Explorer: static dark forest green + grass-blade texture ---- */
+/* ---- Explorer: warm soft-grass meadow paper + canvas pencil-stroke grass ---- */
 .explorer {
-  background: radial-gradient(
-    ellipse at 40% 55%,
-    oklch(0.24 0.11 143) 0%,
-    oklch(0.16 0.09 148) 45%,
-    oklch(0.09 0.05 152) 100%
-  );
+  background:
+    radial-gradient(circle at 8% 16%, oklch(0.69 0.13 140 / 0.46) 0 13%, transparent 22%),
+    radial-gradient(circle at 18% 35%, oklch(0.69 0.13 140 / 0.42) 0 17%, transparent 27%),
+    radial-gradient(circle at 42% 100%, oklch(0.66 0.14 140 / 0.52) 0 13%, transparent 23%),
+    radial-gradient(circle at 86% 94%, oklch(0.65 0.14 140 / 0.5) 0 18%, transparent 28%),
+    linear-gradient(
+      145deg,
+      oklch(0.85 0.13 140) 0%,
+      oklch(0.88 0.12 140) 42%,
+      oklch(0.80 0.15 140) 100%
+    );
+}
+
+/* Subtle paper sheen + faint horizontal/diagonal hatching. */
+.explorerSheen {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(22deg, rgba(255, 255, 255, 0.18), transparent 32%),
+    repeating-linear-gradient(78deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 7px),
+    repeating-linear-gradient(8deg, rgba(60, 116, 53, 0.055) 0 1px, transparent 1px 9px);
+  mix-blend-mode: soft-light;
+  opacity: 0.6;
+}
+
+/* Soft drifting blobs of darker meadow green to suggest sun-dappled patches. */
+.explorerClouds {
+  position: absolute;
+  inset: -8%;
+  opacity: 0.3;
+  background:
+    radial-gradient(circle at 28% 8%, oklch(0.66 0.14 140 / 0.44) 0 11%, transparent 19%),
+    radial-gradient(circle at 16% 45%, oklch(0.72 0.13 140 / 0.36) 0 13%, transparent 22%),
+    radial-gradient(circle at 60% 72%, oklch(0.86 0.10 140 / 0.28) 0 18%, transparent 28%);
+  filter: blur(7px);
+  animation: explorerClouds 18s ease-in-out infinite alternate;
 }
 
 /*
- * SVG turbulence with a low x-frequency and moderate y-frequency produces
- * tall, narrow vertical streaks that read as grass blades.
+ * Canvas paints clumps of dark-green pencil-stroke grass blades with subtle
+ * sway. The canvas itself is transparent — it composites over the meadow
+ * gradient. Capped at 24fps via timestamp throttle inside rAF; pauses when
+ * tab hidden or persona inactive (see AmbientBackground.tsx).
  */
-.explorerGrass {
+.grassCanvas {
   position: absolute;
-  inset: -15%;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='600'><filter id='grass'><feTurbulence type='turbulence' baseFrequency='0.012 0.058' numOctaves='4' seed='7' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.04  0 0 0 0 0.18  0 0 0 0 0.04  0 0 0 0.65 0'/></filter><rect width='100%25' height='100%25' filter='url(%23grass)'/></svg>");
-  background-size: 400px 600px;
-  mix-blend-mode: overlay;
-  opacity: 0.75;
+  inset: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .explorerVignette {
@@ -118,25 +148,37 @@
   inset: 0;
   background: radial-gradient(
     ellipse at center,
-    transparent 30%,
-    oklch(0.05 0.04 150 / 0.75) 100%
+    transparent 45%,
+    oklch(0.45 0.10 142 / 0.32) 100%
   );
 }
 
-/* prefers-reduced-motion: kill the canvas + keyframes; static gradients only. */
+@keyframes explorerClouds {
+  from { transform: translate3d(-1.2%, -0.8%, 0) scale(1); }
+  to   { transform: translate3d(1.1%, 0.9%, 0) scale(1.025); }
+}
+
+/*
+ * prefers-reduced-motion: kill keyframes. The matrix canvas is hidden
+ * outright (it would be empty without animation); the grass canvas paints
+ * a single static frame and stops, so we leave it visible.
+ */
 @media (prefers-reduced-motion: reduce) {
   .matrixCanvas { display: none; }
-  .crafterNoise { animation: none; }
+  .crafterNoise,
+  .explorerClouds { animation: none; }
 }
 
 /*
  * Mobile (≤1100px): the animated bg is too costly on phones, and competes
- * with content that now scrolls over it. Drop the matrix canvas, paper-noise
- * drift, and hue rotation; keep just the persona-tinted gradient as a
+ * with content that now scrolls over it. Drop both canvases, paper-noise
+ * drift, and hue rotation; keep just the persona-tinted gradients as a
  * static backdrop. The skin crossfade between personas still runs.
  */
 @media (max-width: 1100px) {
-  .matrixCanvas { display: none; }
+  .matrixCanvas,
+  .grassCanvas { display: none; }
   .builderGrid { display: none; }
-  .crafterNoise { animation: none; }
+  .crafterNoise,
+  .explorerClouds { animation: none; }
 }
