@@ -286,8 +286,8 @@ function MobileLanding() {
       <p className={styles.mHeroBlurb}>
         A software engineer who designs as much as she ships. I've spent the
         last few years at GoodNotes and Zendesk building thoughtful interfaces
-        and data pipelines that turn raw data into actionable insights. When
-        I'm not in front of a screen, you'll find me outdoors with my camera.
+        and automated solutions. When I'm not in front of a screen, you'll find
+        me outdoors with my camera.
       </p>
       <p className={styles.mHeroHint}>
         Tap a character to peek — tap again to enter.
