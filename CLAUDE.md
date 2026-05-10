@@ -118,6 +118,7 @@ npm run lint         # eslint . --ext .ts,.tsx
 - **Deploy target**: Netlify. Netlify subdomain for v1; custom domain comes later. SPA routing via `public/_redirects`.
 - **Substack feed**: source is `https://fcyen.substack.com/feed`. Refresh = Netlify build hook + scheduled daily ping (cron-job.org or GitHub Actions) — set up during stage 6.
 - **Analytics**: Cloudflare Web Analytics (free, privacy-friendly).
+- **Commit messages**: one sentence, imperative mood, brief description only — put all detail in the PR description.
 
 ## Versioning
 
