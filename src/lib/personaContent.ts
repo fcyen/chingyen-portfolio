@@ -97,6 +97,13 @@ export const CRAFTER_POSTS: readonly PostEntry[] = [
     tag: "product",
     slug: "kasih-link-phase-1",
   },
+  {
+    num: "02",
+    title: "Redesigning the OCBC App Experience",
+    meta: "case study · 7 min",
+    tag: "ux",
+    slug: "ocbc-app",
+  },
 ];
 
 export type ExplorerPhoto = {
