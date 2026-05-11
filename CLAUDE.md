@@ -14,7 +14,7 @@ A personal portfolio website for **Ching Yen**, built from a design handoff from
 - **Animation**: framer-motion for component transitions; raw canvas + CSS keyframes for ambient backgrounds
 - **Content**: MDX for case-study posts
 - **Deploy**: Netlify (SPA redirects via `public/_redirects`)
-- **Fonts**: `@fontsource/instrument-serif`, `@fontsource/jetbrains-mono`, `@fontsource/inter`
+- **Fonts**: `@fontsource/fraunces` (serif), `@fontsource/space-mono` (mono), `@fontsource/space-grotesk` (sans)
 
 ## Repo layout
 
