@@ -109,7 +109,7 @@ function BuilderMatrixCanvas({ active }: { active: boolean }) {
       ctx.fillStyle = "rgba(8, 14, 28, 0.22)";
       ctx.fillRect(0, 0, w, h);
 
-      ctx.font = "14px JetBrains Mono, ui-monospace, monospace";
+      ctx.font = "14px Space Mono, ui-monospace, monospace";
       ctx.textBaseline = "top";
 
       for (let i = 0; i < cols; i++) {
