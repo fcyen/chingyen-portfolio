@@ -110,14 +110,14 @@
   margin-bottom: 14px;
 }
 .heroTitle {
-  font-family: var(--serif);
+  font-family: var(--title-1);
   font-size: 56px;
   line-height: 1;
   letter-spacing: -1.5px;
   font-weight: 400;
 }
 .heroTitle em {
-  font-style: italic;
+  font-family: var(--title-2);
   color: #b47aff;
 }
 .heroBlurb {
@@ -270,14 +270,14 @@
   padding: 0 16px;
 }
 .cardName {
-  font-family: var(--serif);
+  font-family: var(--title-1);
   font-size: 30px;
   line-height: 1;
   color: #e8e5dc;
   margin-bottom: 8px;
 }
 .cardName em {
-  font-style: italic;
+  font-family: var(--title-2);
   color: var(--accent);
   transition: color 0.3s;
 }

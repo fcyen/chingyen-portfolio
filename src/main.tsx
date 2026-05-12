@@ -15,6 +15,8 @@ import "@fontsource/space-grotesk/400.css";
 import "@fontsource/space-grotesk/500.css";
 import "@fontsource/space-grotesk/600.css";
 import "@fontsource/space-grotesk/700.css";
+import "@fontsource/jersey-10/400.css";
+import "@fontsource/gugi/400.css";
 import "@/styles/reset.css";
 import "@/styles/tokens.css";
 import "@/styles/utilities.css";
