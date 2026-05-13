@@ -1,7 +1,7 @@
 {
   "name": "chingyen-portfolio",
   "private": true,
-  "version": "0.6.1",
+  "version": "0.6.2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@fontsource/fraunces": "^5.1.0",
-    "@fontsource/space-grotesk": "^5.1.0",
-    "@fontsource/space-mono": "^5.1.0",
+    "@fontsource/inter": "^5.1.0",
+    "@fontsource/jetbrains-mono": "^5.1.0",
     "@fontsource/jersey-10": "^5.1.0",
     "@fontsource/gugi": "^5.1.0",
     "framer-motion": "^11.11.17",
