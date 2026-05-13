@@ -32,7 +32,7 @@ export default function RightCard({ persona }: { persona: Persona }) {
 
       <div className={styles.header}>
         <div className={`mono uppr ${styles.section}`}>{meta.section}</div>
-        <h2 className={`serif ${styles.heading}`}>
+        <h2 className={styles.heading}>
           The <em>{meta.heading}</em>
         </h2>
         <div className={`mono ${styles.focus}`}>

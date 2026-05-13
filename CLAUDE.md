@@ -14,7 +14,7 @@ A personal portfolio website for **Ching Yen**, built from a design handoff from
 - **Animation**: framer-motion for component transitions; raw canvas + CSS keyframes for ambient backgrounds
 - **Content**: MDX for case-study posts
 - **Deploy**: Netlify (SPA redirects via `public/_redirects`)
-- **Fonts**: `@fontsource/instrument-serif`, `@fontsource/jetbrains-mono`, `@fontsource/inter`
+- **Fonts**: `@fontsource/instrument-serif` (`--serif`), `@fontsource/jetbrains-mono` (`--mono`), `@fontsource/inter` (`--sans`), `@fontsource/jersey-10` (`--title-display`, pixel/arcade hero titles — Landing cards + character-page HeroCard), `@fontsource/gugi` (`--title-rounded`, case-study headings). Use the token, not the family name.
 
 ## Repo layout
 
