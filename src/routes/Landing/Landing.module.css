@@ -122,9 +122,7 @@
   color: #b47aff;
 }
 .heroTagline {
-  font-family: var(--serif);
   font-size: 20px;
-  font-style: italic;
   color: rgba(232, 229, 220, 0.9);
   margin-top: 16px;
 }
@@ -528,9 +526,7 @@
   color: #b47aff;
 }
 .mHeroTagline {
-  font-family: var(--serif);
   font-size: 17px;
-  font-style: italic;
   color: rgba(232, 229, 220, 0.9);
   margin-top: 12px;
 }
