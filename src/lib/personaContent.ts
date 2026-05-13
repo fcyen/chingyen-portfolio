@@ -15,7 +15,7 @@ export type PersonaContent = {
 export const PERSONA_CONTENT: Record<Persona, PersonaContent> = {
   builder: {
     heroSummary:
-      "engineer who does their best work at the intersection of design and engineering.",
+      "engineer building scalable frontends and bridging tech with business goals.",
   },
   crafter: {
     heroSummary:

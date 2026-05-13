@@ -37,7 +37,7 @@ export const LANDING_PERSONAS: readonly LandingPersona[] = [
     img: "/assets/character-builder.png",
     aspect: 550 / 1262,
     blurb:
-      "engineer who does their best work at the intersection of design and engineering.",
+      "engineer building scalable frontends and bridging tech with business goals.",
     tags: [
       { label: "Full-stack engineering", x: 4, y: 18, side: "left" },
       { label: "Production observability", x: 96, y: 24, side: "right" },
