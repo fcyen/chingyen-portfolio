@@ -509,14 +509,15 @@
   margin-bottom: 8px;
 }
 .mHeroTitle {
-  font-family: var(--serif);
+  font-family: var(--title-display);
   font-size: 38px;
-  line-height: 1;
-  letter-spacing: -0.8px;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
   font-weight: 400;
 }
 .mHeroTitle em {
-  font-style: italic;
+  font-family: var(--title-display);
+  font-style: normal;
   color: #b47aff;
 }
 .mHeroBlurb {
@@ -677,13 +678,15 @@
   opacity: 0.7;
 }
 .mCardName {
-  font-family: var(--serif);
+  font-family: var(--title-display);
   font-size: 22px;
-  line-height: 1;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
   margin-bottom: 4px;
 }
 .mCardName em {
-  font-style: italic;
+  font-family: var(--title-display);
+  font-style: normal;
   color: var(--accent);
 }
 .mCardLabel {
