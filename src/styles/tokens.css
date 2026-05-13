@@ -25,7 +25,7 @@
   --accent-2: oklch(0.55 0.1 200); /* muted teal — explorer */
   --accent-3: oklch(0.7 0.13 90); /* mustard — crafter */
 
-  --serif: "Fraunces", "Times New Roman", serif;
+  --serif: "Instrument Serif", "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --sans: "Inter", system-ui, sans-serif;
   --title-display: "Jersey 10", "Helvetica Neue", sans-serif;

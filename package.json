@@ -1,7 +1,7 @@
 {
   "name": "chingyen-portfolio",
   "private": true,
-  "version": "0.6.2",
+  "version": "0.6.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
-    "@fontsource/fraunces": "^5.1.0",
+    "@fontsource/instrument-serif": "^5.1.0",
     "@fontsource/inter": "^5.1.0",
     "@fontsource/jetbrains-mono": "^5.1.0",
     "@fontsource/jersey-10": "^5.1.0",
