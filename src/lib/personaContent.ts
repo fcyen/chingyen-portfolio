@@ -61,18 +61,22 @@ export const BUILDER_TIMELINE: readonly TimelineEntry[] = [
     role: "Software Engineer",
     org: "GoodNotes",
     blurb: [
-      "At GoodNotes, I worked closely with the CRM team to bring new customer engagement capabilities to their cross-platform app — features that weren’t possible before, reaching millions of users worldwide.",
-    ],
+      "• Led the cross-platform integration of Braze within a complex TWA architecture, unlocking a net-new communication channel to reach cross-platform users for the first time — enabling targeted push notifications and marketing campaigns where no outreach capability previously existed.",
+       "• Architected the end-to-end CRM data pipeline, designing event instrumentation and user attribute mapping to power advanced user segmentation — laying the foundation for the team's first data-driven lifecycle marketing efforts.",
+       "• Engineered the cross-platform beta recruitment UI and implemented a feature-flagged rollout strategy within a condensed timeframe, surpassing recruitment targets by 300%."
+    ]
   },
   {
     year: "2021 — 2025",
     role: "Senior Software Engineer",
     org: "Zendesk",
-    blurb: [
-      "Zendesk is where I built my technical foundation. I worked on real-time Messaging features inside the Agent Workspace — a dense, high-throughput interface used by customer service agents to handle thousands of tickets a day. It taught me how to scale a web app without degrading performance, and how to move data efficiently between frontend and backend.",
-      "I also learned how to ship at scale: controlled rollouts, observability instrumentation, and handling critical incidents under pressure. I built an internal tool that cut the diagnosis time for production issues from days to hours.",
-    ],
-  },
+    blurb:[
+      "• Built the Auto-Accept feature for the messaging product, reducing agents' first response time by streamlining ticket assignment. Drove adoption from 5% to 25% across targeted enterprise accounts through data-driven iteration on the user experience.",
+      "• Co-led an internal project to build a diagnostic data pipeline, consolidating investigation data into a single location and shortening internal incident investigation time from days to hours.",
+      "• Migrated high-traffic WebSocket endpoints to GraphQL, eliminating sticky sessions and tripling concurrent connection capacity to improve scalability of real-time messaging.",
+      "• Built robust test suites for Tier 1 features and implemented monitoring and observability instrumentation on Datadog."
+    ]
+  }
 ];
 
 export type PostEntry = {
