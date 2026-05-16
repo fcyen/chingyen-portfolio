@@ -121,9 +121,14 @@
   font-style: normal;
   color: #b47aff;
 }
+.heroTagline {
+  font-size: 15px;
+  color: rgba(232, 229, 220, 0.9);
+  margin-top: 16px;
+}
 .heroBlurb {
   max-width: 640px;
-  margin: 18px auto 0;
+  margin: 12px auto 0;
   font-size: 15px;
   line-height: 1.6;
   color: rgba(232, 229, 220, 0.7);
@@ -520,11 +525,16 @@
   font-style: normal;
   color: #b47aff;
 }
+.mHeroTagline {
+  font-size: 13px;
+  color: rgba(232, 229, 220, 0.9);
+  margin-top: 12px;
+}
 .mHeroBlurb {
   font-size: 13px;
   line-height: 1.55;
   color: rgba(232, 229, 220, 0.7);
-  margin-top: 14px;
+  margin-top: 10px;
 }
 .mHeroHint {
   font-size: 12px;

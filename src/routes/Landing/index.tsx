@@ -98,13 +98,18 @@ function DesktopLanding() {
           <span className={styles.blink}>_</span>
         </div>
         <h1 className={styles.heroTitle}>
-          I'm <em>Ching Yen</em>
+          I'm <em>Jean</em>
         </h1>
+        <p className={styles.heroTagline}>I design in pixels.</p>
         <p className={styles.heroBlurb}>
-          A software engineer who designs as much as she ships. I've spent the
-          last few years at GoodNotes and Zendesk building thoughtful
-          interfaces and AI solutions. When I'm not in front of a screen, you'll find me outdoors
-          with my camera.
+          I spent the past 5 years as a software engineer focused on web
+          development, and found myself constantly drawn to the design
+          questions. What friction does the user hit in this flow? How can the
+          information hierarchy work harder?
+        </p>
+        <p className={styles.heroBlurb}>
+          I realized, that my best work happens at the intersection of design
+          and engineering.
         </p>
         <div className={styles.socials}>
           {SOCIALS.map((s) => (
@@ -281,13 +286,18 @@ function MobileLanding() {
         <span className={styles.blink}>_</span>
       </div>
       <h1 className={styles.mHeroTitle}>
-        I'm <em>Ching Yen.</em>
+        I'm <em>Jean.</em>
       </h1>
+      <p className={styles.mHeroTagline}>I design in pixels.</p>
       <p className={styles.mHeroBlurb}>
-        A software engineer who designs as much as she ships. I've spent the
-        last few years at GoodNotes and Zendesk building thoughtful interfaces
-        and automated solutions. When I'm not in front of a screen, you'll find
-        me outdoors with my camera.
+        I spent the past 5 years as a software engineer focused on web
+        development, and found myself constantly drawn to the design questions.
+        What friction does the user hit in this flow? How can the information
+        hierarchy work harder?
+      </p>
+      <p className={styles.mHeroBlurb}>
+        I realized, that my best work happens at the intersection of design and
+        engineering.
       </p>
       <p className={styles.mHeroHint}>
         Tap a character to peek — tap again to enter.

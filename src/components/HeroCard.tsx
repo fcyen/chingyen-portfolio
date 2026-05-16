@@ -32,7 +32,7 @@ export default function HeroCard({ persona }: { persona: Persona }) {
       <div className={`mono uppr ${styles.eyebrow}`}>// hello there ---</div>
 
       <h1 className={styles.title}>
-        Hi, I&apos;m <em>Ching&nbsp;Yen</em>.
+        Hi, I&apos;m <em>Jean</em>.
       </h1>
 
       {/* Crossfade summary on persona change. `mode="wait"` lets the old line
