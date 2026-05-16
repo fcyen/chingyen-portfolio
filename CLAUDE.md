@@ -10,7 +10,7 @@ A personal portfolio website for **Ching Yen**, built from a design handoff from
 
 - **Framework**: Vite + React 18 + TypeScript
 - **Routing**: React Router v6
-- **Styling**: Plain CSS with CSS variables (`oklch` color space). No Tailwind.
+- **Styling**: Plain CSS with CSS variables (`oklch` color space). No Tailwind. `@csstools/postcss-oklab-function` (configured in `postcss.config.js` with `preserve: true`) emits sRGB fallbacks alongside every `oklch()` declaration so browsers that predate oklch support (Safari < 15.4, Chrome < 111, Firefox < 113) still render colors — modern browsers see both rules and pick the `oklch()` one via cascade order.
 - **Animation**: framer-motion for component transitions; raw canvas + CSS keyframes for ambient backgrounds
 - **Content**: MDX for case-study posts
 - **Deploy**: Netlify (SPA redirects via `public/_redirects`)
@@ -99,7 +99,7 @@ The original HTML/CSS/JS prototype lives in `design-reference/project/`:
 - One component per file. Co-locate styles via CSS Modules (`Foo.module.css`) for component-local rules; tokens stay global.
 - No inline `style={{...}}` for anything that has more than ~3 properties — promote to CSS Modules. The prototype is full of inline styles because it's a single-file prototype; we don't have that constraint.
 - Pixel art uses `image-rendering: pixelated` and ships at native resolution (do not upscale source PNGs).
-- Color values use `oklch()` directly — keep parity with the prototype's tokens.
+- Color values use `oklch()` directly — keep parity with the prototype's tokens. PostCSS handles the sRGB fallback at build time; don't hand-author fallback declarations.
 
 ## Common commands
 
