@@ -286,7 +286,7 @@ function MobileLanding() {
       <p className={styles.mHeroBlurb}>
         A software engineer who designs as much as she ships. I've spent the
         last few years at GoodNotes and Zendesk building thoughtful interfaces
-        and automated solutions. When I'm not in front of a screen, you'll find
+        and AI solutions. When I'm not in front of a screen, you'll find
         me outdoors with my camera.
       </p>
       <p className={styles.mHeroHint}>
