@@ -60,6 +60,7 @@ scripts/
 design-reference/          # original Claude Design handoff bundle — DO NOT EDIT, READ-ONLY
 index.html                 # Vite HTML entry
 vite.config.ts             # Vite + React plugin + `@/*` alias to src
+postcss.config.js          # PostCSS pipeline — `@csstools/postcss-oklab-function` emits sRGB fallbacks for pre-2023 browsers, oklch() is preserved for modern ones
 tsconfig.json              # app TS config (strict, paths)
 tsconfig.node.json         # vite.config.ts TS config
 netlify.toml               # build command + Node version pin
@@ -99,7 +100,7 @@ The original HTML/CSS/JS prototype lives in `design-reference/project/`:
 - One component per file. Co-locate styles via CSS Modules (`Foo.module.css`) for component-local rules; tokens stay global.
 - No inline `style={{...}}` for anything that has more than ~3 properties — promote to CSS Modules. The prototype is full of inline styles because it's a single-file prototype; we don't have that constraint.
 - Pixel art uses `image-rendering: pixelated` and ships at native resolution (do not upscale source PNGs).
-- Color values use `oklch()` directly — keep parity with the prototype's tokens.
+- Color values in CSS use `oklch()` directly — keep parity with the prototype's tokens. PostCSS auto-generates sRGB fallbacks at build time so pre-2023 browsers still get readable colors. Avoid embedding raw `oklch()` strings in JS/TSX (PostCSS can't reach inline-style strings); either reference a CSS variable defined in `tokens.css`, or use an sRGB hex equivalent.
 
 ## Common commands
 

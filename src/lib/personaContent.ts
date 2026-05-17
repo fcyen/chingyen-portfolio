@@ -97,21 +97,26 @@ export const CRAFTER_POSTS: readonly PostEntry[] = [
 
 export type ExplorerPhoto = {
   caption: string;
-  /** Two oklch() colors used to fake a thumbnail with a linear-gradient. */
+  /**
+   * Two sRGB hex colors used to fake a thumbnail with a linear-gradient.
+   * Stored as hex (not oklch) so pre-2023 browsers can render the inline
+   * `linear-gradient(...)` string — PostCSS only rewrites CSS files, not
+   * JS string literals embedded into inline styles.
+   */
   palette: readonly [string, string];
 };
 
 /** 3×3 grid of fake photo thumbs sitting behind the locked overlay. */
 export const EXPLORER_PHOTOS: readonly ExplorerPhoto[] = [
-  { caption: "lisbon, 06:42",     palette: ["oklch(0.78 0.08 65)",  "oklch(0.55 0.10 30)"] },
-  { caption: "tokyo, midnight",   palette: ["oklch(0.30 0.05 260)", "oklch(0.55 0.12 280)"] },
-  { caption: "kyoto, fog",        palette: ["oklch(0.85 0.02 140)", "oklch(0.55 0.04 160)"] },
-  { caption: "porto, blue hour",  palette: ["oklch(0.45 0.08 240)", "oklch(0.78 0.06 60)"] },
-  { caption: "marrakech, noon",   palette: ["oklch(0.78 0.10 50)",  "oklch(0.50 0.13 35)"] },
-  { caption: "iceland, road",     palette: ["oklch(0.92 0.01 220)", "oklch(0.40 0.04 240)"] },
-  { caption: "seoul, rain",       palette: ["oklch(0.55 0.04 250)", "oklch(0.30 0.04 260)"] },
-  { caption: "athens, marble",    palette: ["oklch(0.90 0.01 80)",  "oklch(0.65 0.04 70)"] },
-  { caption: "oaxaca, market",    palette: ["oklch(0.75 0.13 35)",  "oklch(0.50 0.14 20)"] },
+  { caption: "lisbon, 06:42",     palette: ["#dbad81", "#a45a4e"] },
+  { caption: "tokyo, midnight",   palette: ["#1f2e47", "#6568b6"] },
+  { caption: "kyoto, fog",        palette: ["#c7d1c5", "#5e796a"] },
+  { caption: "porto, blue hour",  palette: ["#255b7d", "#d5af91"] },
+  { caption: "marrakech, noon",   palette: ["#eca57d", "#9f422b"] },
+  { caption: "iceland, road",     palette: ["#dee6e9", "#344b5b"] },
+  { caption: "seoul, rain",       palette: ["#607489", "#222e42"] },
+  { caption: "athens, marble",    palette: ["#e1ddd7", "#9f8b75"] },
+  { caption: "oaxaca, market",    palette: ["#f48e74", "#a43a41"] },
 ];
 
 /* ---------------- Bottom-left widget content ---------------- */

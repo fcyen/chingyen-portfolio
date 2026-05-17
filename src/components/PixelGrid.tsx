@@ -8,8 +8,8 @@ import type { CSSProperties, ReactElement } from "react";
  *   "#"     — `color` (defaults to currentColor)
  *   "k"     — var(--ink)
  *   "o"     — var(--accent)
- *   "l"     — light cream (oklch(0.85 0.02 80))
- *   "y"     — sticky-note yellow (oklch(0.85 0.10 90))
+ *   "l"     — light cream (var(--pixel-cream))
+ *   "y"     — sticky-note yellow (var(--pixel-yellow))
  *
  * Ported from design-reference/project/src/icons.jsx.
  */
@@ -24,8 +24,8 @@ export type PixelGridProps = {
 const CHAR_COLORS: Record<string, string> = {
   k: "var(--ink)",
   o: "var(--accent)",
-  l: "oklch(0.85 0.02 80)",
-  y: "oklch(0.85 0.10 90)",
+  l: "var(--pixel-cream)",
+  y: "var(--pixel-yellow)",
 };
 
 export default function PixelGrid({
