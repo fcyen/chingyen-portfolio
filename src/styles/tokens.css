@@ -25,6 +25,11 @@
   --accent-2: oklch(0.55 0.1 200); /* muted teal — explorer */
   --accent-3: oklch(0.7 0.13 90); /* mustard — crafter */
 
+  /* Pixel-art fill colors referenced by PixelGrid's CHAR_COLORS map. Lifted
+   * out of JS so PostCSS can emit sRGB fallbacks for pre-2023 browsers. */
+  --pixel-cream: oklch(0.85 0.02 80);
+  --pixel-yellow: oklch(0.85 0.10 90);
+
   --serif: "Instrument Serif", "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
   --sans: "Inter", system-ui, sans-serif;
